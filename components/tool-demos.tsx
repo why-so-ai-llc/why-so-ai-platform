@@ -144,7 +144,7 @@ export function TodoDemo() {
               />
               <span className={item.done ? 'text-slate-500 line-through' : ''}>{item.text}</span>
             </label>
-            <button onClick={() => setItems((current) => current.filter((currentItem) => currentItem.id !== item.id))} className="text-sm text-red-300 hover:text-red-200">
+            <button type="button" onClick={() => setItems((current) => current.filter((currentItem) => currentItem.id !== item.id))} className="text-sm text-red-300 hover:text-red-200">
               Remove
             </button>
           </div>
@@ -185,7 +185,7 @@ export function NotesDemo() {
                 <h3 className="font-semibold text-white">{note.title}</h3>
                 <p className="mt-2 text-sm text-slate-300">{note.body}</p>
               </div>
-              <button onClick={() => setNotes((current) => current.filter((currentNote) => currentNote.id !== note.id))} className="text-sm text-red-300 hover:text-red-200">Delete</button>
+              <button type="button" onClick={() => setNotes((current) => current.filter((currentNote) => currentNote.id !== note.id))} className="text-sm text-red-300 hover:text-red-200">Delete</button>
             </div>
           </article>
         ))}
@@ -196,7 +196,13 @@ export function NotesDemo() {
 
 function normalizeUrl(input: string) {
   const candidate = input.startsWith('http://') || input.startsWith('https://') ? input : `https://${input}`;
-  return new URL(candidate).toString();
+  const normalizedUrl = new URL(candidate);
+
+  if (normalizedUrl.protocol !== 'http:' && normalizedUrl.protocol !== 'https:') {
+    throw new Error('Only http and https URLs are supported.');
+  }
+
+  return normalizedUrl.toString();
 }
 
 export function BookmarksDemo() {
@@ -236,7 +242,7 @@ export function BookmarksDemo() {
               <p className="font-semibold text-white">{bookmark.label}</p>
               <a href={bookmark.url} target="_blank" rel="noreferrer" className="text-sm text-red-300 hover:text-red-200">{bookmark.url}</a>
             </div>
-            <button onClick={() => setBookmarks((current) => current.filter((currentBookmark) => currentBookmark.id !== bookmark.id))} className="text-sm text-red-300 hover:text-red-200">Remove</button>
+            <button type="button" onClick={() => setBookmarks((current) => current.filter((currentBookmark) => currentBookmark.id !== bookmark.id))} className="text-sm text-red-300 hover:text-red-200">Remove</button>
           </div>
         ))}
       </div>
@@ -276,8 +282,8 @@ export function PomodoroDemo() {
           <p className="mt-3 text-6xl font-bold text-white">{minutes}:{seconds}</p>
         </div>
         <div className="flex flex-wrap justify-center gap-3">
-          <button onClick={() => setRunning((current) => !current)} className="rounded-xl bg-red-600 px-5 py-3 font-semibold text-white hover:bg-red-500">{running ? 'Pause' : 'Start'}</button>
-          <button onClick={() => { setRunning(false); setTimerState({ mode: 'Focus', secondsLeft: 25 * 60 }); }} className="rounded-xl border border-slate-700 px-5 py-3 font-semibold text-slate-200 hover:border-red-400 hover:text-red-300">Reset</button>
+          <button type="button" onClick={() => setRunning((current) => !current)} className="rounded-xl bg-red-600 px-5 py-3 font-semibold text-white hover:bg-red-500">{running ? 'Pause' : 'Start'}</button>
+          <button type="button" onClick={() => { setRunning(false); setTimerState({ mode: 'Focus', secondsLeft: 25 * 60 }); }} className="rounded-xl border border-slate-700 px-5 py-3 font-semibold text-slate-200 hover:border-red-400 hover:text-red-300">Reset</button>
         </div>
       </div>
     </SectionCard>
@@ -332,7 +338,7 @@ export function ExpenseTrackerDemo() {
               </div>
               <div className="flex items-center gap-4">
                 <span>${expense.amount.toFixed(2)}</span>
-                <button onClick={() => setExpenses((current) => current.filter((currentExpense) => currentExpense.id !== expense.id))} className="text-red-300 hover:text-red-200">Remove</button>
+                <button type="button" onClick={() => setExpenses((current) => current.filter((currentExpense) => currentExpense.id !== expense.id))} className="text-red-300 hover:text-red-200">Remove</button>
               </div>
             </div>
           ))}
@@ -414,7 +420,7 @@ export function WeatherDemo() {
             <option key={option.name}>{option.name}</option>
           ))}
         </select>
-        <button onClick={() => void loadWeather()} disabled={loading} className="rounded-xl bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-500 disabled:cursor-not-allowed disabled:opacity-60">
+        <button type="button" onClick={() => void loadWeather()} disabled={loading} className="rounded-xl bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-500 disabled:cursor-not-allowed disabled:opacity-60">
           {loading ? 'Loading…' : 'Fetch weather'}
         </button>
       </div>
@@ -463,8 +469,8 @@ export function CalculatorDemo() {
       <div className="space-y-4">
         <input value={expression} onChange={(event) => setExpression(event.target.value)} placeholder="(12 + 4) / 2" className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white focus:border-red-400 focus:outline-none" />
         <div className="flex flex-wrap gap-3">
-          <button onClick={evaluateExpression} className="rounded-xl bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-500">Evaluate</button>
-          <button onClick={() => { setExpression(''); setResult(''); }} className="rounded-xl border border-slate-700 px-4 py-3 font-semibold text-slate-200 hover:border-red-400 hover:text-red-300">Clear</button>
+          <button type="button" onClick={evaluateExpression} className="rounded-xl bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-500">Evaluate</button>
+          <button type="button" onClick={() => { setExpression(''); setResult(''); }} className="rounded-xl border border-slate-700 px-4 py-3 font-semibold text-slate-200 hover:border-red-400 hover:text-red-300">Clear</button>
         </div>
         <p className="rounded-xl border border-slate-800 bg-slate-950/70 p-4 text-slate-200">{result || 'Result will appear here.'}</p>
       </div>
@@ -503,7 +509,7 @@ export function JokeDemo() {
 
   return (
     <SectionCard title="Joke generator" description="Public API demo. If the service is unreachable, the page surfaces the network error instead of pretending to succeed.">
-      <button onClick={() => void fetchJoke()} disabled={loading} className="rounded-xl bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-500 disabled:cursor-not-allowed disabled:opacity-60">
+      <button type="button" onClick={() => void fetchJoke()} disabled={loading} className="rounded-xl bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-500 disabled:cursor-not-allowed disabled:opacity-60">
         {loading ? 'Loading…' : 'Fetch joke'}
       </button>
       {error ? <p className="mt-4 rounded-xl border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-200">{error}</p> : null}
@@ -573,7 +579,7 @@ export function PasswordGeneratorDemo() {
             >
               Generate password
             </button>
-            <button onClick={() => void copyToClipboard()} className="rounded-xl border border-slate-700 px-5 py-3 font-semibold text-slate-200 hover:border-red-400 hover:text-red-300">
+            <button type="button" onClick={() => void copyToClipboard()} className="rounded-xl border border-slate-700 px-5 py-3 font-semibold text-slate-200 hover:border-red-400 hover:text-red-300">
               Copy
             </button>
           </div>
@@ -603,7 +609,7 @@ export function PasswordGeneratorDemo() {
               {history.map((item, index) => (
                 <div key={`${item}-${index}`} className="flex items-center justify-between gap-3 rounded-xl border border-slate-800 px-3 py-2">
                   <span className="truncate font-mono">{item}</span>
-                  <button onClick={() => setHistory((current) => current.filter((_, currentIndex) => currentIndex !== index))} className="text-red-300 hover:text-red-200">Delete</button>
+                  <button type="button" onClick={() => setHistory((current) => current.filter((_, currentIndex) => currentIndex !== index))} className="text-red-300 hover:text-red-200">Delete</button>
                 </div>
               ))}
             </div>

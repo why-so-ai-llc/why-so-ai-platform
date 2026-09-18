@@ -10,4 +10,9 @@ describe('calculator parser', () => {
   it('rejects invalid characters', () => {
     expect(() => evaluateArithmeticExpression('alert(1)')).toThrow(/simple arithmetic/i);
   });
+
+  it('rejects malformed parser input', () => {
+    expect(() => evaluateArithmeticExpression('(1 + 2')).toThrow(/invalid expression/i);
+    expect(() => evaluateArithmeticExpression('1.2.3 + 4')).toThrow(/invalid expression/i);
+  });
 });
