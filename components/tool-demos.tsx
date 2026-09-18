@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { FormEvent, useEffect, useMemo, useState } from 'react';
 
 import { useLocalStorageState } from '@/hooks/useLocalStorageState';
+import { evaluateArithmeticExpression } from '@/lib/calculator';
 import { analyzePassword, createPassword, getStrengthColor, PasswordOptions } from '@/lib/passwords';
 
 type TodoItem = { id: string; text: string; done: boolean };
@@ -450,7 +451,7 @@ export function CalculatorDemo() {
     }
 
     try {
-      const value = Function(`"use strict"; return (${expression})`)();
+      const value = evaluateArithmeticExpression(expression);
       setResult(String(value));
     } catch {
       setResult('Invalid expression.');
@@ -599,10 +600,10 @@ export function PasswordGeneratorDemo() {
             <h3 className="font-semibold text-white">Recent passwords</h3>
             <div className="mt-4 space-y-3 text-sm text-slate-300">
               {history.length === 0 ? <p className="text-slate-400">No locally stored passwords yet.</p> : null}
-              {history.map((item) => (
-                <div key={item} className="flex items-center justify-between gap-3 rounded-xl border border-slate-800 px-3 py-2">
+              {history.map((item, index) => (
+                <div key={`${item}-${index}`} className="flex items-center justify-between gap-3 rounded-xl border border-slate-800 px-3 py-2">
                   <span className="truncate font-mono">{item}</span>
-                  <button onClick={() => setHistory((current) => current.filter((currentItem) => currentItem !== item))} className="text-red-300 hover:text-red-200">Delete</button>
+                  <button onClick={() => setHistory((current) => current.filter((_, currentIndex) => currentIndex !== index))} className="text-red-300 hover:text-red-200">Delete</button>
                 </div>
               ))}
             </div>

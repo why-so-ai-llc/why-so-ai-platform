@@ -15,7 +15,7 @@ export function SiteHeader() {
             <span className="block text-xs uppercase tracking-[0.2em] text-slate-400">Automation & AI systems</span>
           </span>
         </Link>
-        <nav className="flex flex-wrap items-center gap-2 text-sm font-medium text-slate-300">
+        <nav aria-label="Primary site navigation" className="flex flex-wrap items-center gap-2 text-sm font-medium text-slate-300">
           {navItems.map((item) => (
             <Link
               key={item.href}

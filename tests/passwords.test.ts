@@ -1,8 +1,12 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { analyzePassword, createPassword } from '../lib/passwords';
 
 describe('password utilities', () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
   it('flags weak passwords', () => {
     const analysis = analyzePassword('aaa');
     expect(analysis.strength).toBe('Weak');
@@ -15,15 +19,42 @@ describe('password utilities', () => {
     expect(['Strong', 'Very Strong']).toContain(analysis.strength);
   });
 
-  it('creates a password when at least one character set is enabled', () => {
-    const password = createPassword(12, {
-      uppercase: false,
-      lowercase: true,
-      numbers: true,
+  it('uses crypto.getRandomValues when available', () => {
+    Object.defineProperty(globalThis, 'crypto', {
+      value: {
+        getRandomValues: (array: Uint32Array) => {
+          array[0] = 1;
+          return array;
+        },
+      },
+      configurable: true,
+    });
+
+    const password = createPassword(4, {
+      uppercase: true,
+      lowercase: false,
+      numbers: false,
       symbols: false,
     });
-    expect(password).toHaveLength(12);
-    expect(/[a-z0-9]{12}/.test(password)).toBe(true);
+
+    expect(password).toBe('BBBB');
+  });
+
+  it('falls back to Math.random when crypto is unavailable', () => {
+    Object.defineProperty(globalThis, 'crypto', {
+      value: undefined,
+      configurable: true,
+    });
+    vi.spyOn(Math, 'random').mockReturnValue(0);
+
+    const password = createPassword(4, {
+      uppercase: false,
+      lowercase: true,
+      numbers: false,
+      symbols: false,
+    });
+
+    expect(password).toBe('aaaa');
   });
 
   it('rejects empty option sets', () => {
