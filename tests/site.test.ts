@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { getAllKnownRoutes, navItems, serviceRoutes, toolRoutes } from '../lib/site';
+import { blogRoutes, getAllKnownRoutes, navItems, serviceRoutes, toolRoutes } from '../lib/site';
 
 describe('site routes', () => {
   it('keeps every known route unique', () => {
@@ -9,7 +9,7 @@ describe('site routes', () => {
   });
 
   it('uses valid absolute hrefs for navigation, services, and tools', () => {
-    [...navItems.map((item) => item.href), ...serviceRoutes, ...toolRoutes].forEach((route) => {
+    [...navItems.map((item) => item.href), ...serviceRoutes, ...toolRoutes, ...blogRoutes].forEach((route) => {
       expect(route.startsWith('/')).toBe(true);
       expect(route).not.toContain('#');
     });

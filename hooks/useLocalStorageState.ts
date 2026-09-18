@@ -1,6 +1,6 @@
 'use client';
 
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 
 function readStoredValue<T>(key: string, initialValue: T) {
   if (typeof window === 'undefined') {
@@ -19,6 +19,7 @@ function readStoredValue<T>(key: string, initialValue: T) {
 export function useLocalStorageState<T>(key: string, initialValue: T) {
   const [value, setValue] = useState<T>(initialValue);
   const [hydrated, setHydrated] = useState(false);
+  const initialValueRef = useRef(initialValue);
 
   useEffect(() => {
     if (typeof window === 'undefined') {
@@ -26,12 +27,12 @@ export function useLocalStorageState<T>(key: string, initialValue: T) {
     }
 
     const frame = window.requestAnimationFrame(() => {
-      setValue(readStoredValue(key, initialValue));
+      setValue(readStoredValue(key, initialValueRef.current));
       setHydrated(true);
     });
 
     return () => window.cancelAnimationFrame(frame);
-  }, [initialValue, key]);
+  }, [key]);
 
   useEffect(() => {
     if (!hydrated || typeof window === 'undefined') {

@@ -245,39 +245,39 @@ export function BookmarksDemo() {
 }
 
 export function PomodoroDemo() {
-  const [secondsLeft, setSecondsLeft] = useState(25 * 60);
+  const [timerState, setTimerState] = useState<{ mode: 'Focus' | 'Break'; secondsLeft: number }>({ mode: 'Focus', secondsLeft: 25 * 60 });
   const [running, setRunning] = useState(false);
-  const [mode, setMode] = useState<'Focus' | 'Break'>('Focus');
 
   useEffect(() => {
     if (!running) return;
 
     const timer = window.setInterval(() => {
-      setSecondsLeft((current) => {
-        if (current <= 1) {
-          setMode((currentMode) => (currentMode === 'Focus' ? 'Break' : 'Focus'));
-          return mode === 'Focus' ? 5 * 60 : 25 * 60;
+      setTimerState((current) => {
+        if (current.secondsLeft <= 1) {
+          const nextMode = current.mode === 'Focus' ? 'Break' : 'Focus';
+          return { mode: nextMode, secondsLeft: nextMode === 'Focus' ? 25 * 60 : 5 * 60 };
         }
-        return current - 1;
+
+        return { ...current, secondsLeft: current.secondsLeft - 1 };
       });
     }, 1000);
 
     return () => window.clearInterval(timer);
-  }, [mode, running]);
+  }, [running]);
 
-  const minutes = String(Math.floor(secondsLeft / 60)).padStart(2, '0');
-  const seconds = String(secondsLeft % 60).padStart(2, '0');
+  const minutes = String(Math.floor(timerState.secondsLeft / 60)).padStart(2, '0');
+  const seconds = String(timerState.secondsLeft % 60).padStart(2, '0');
 
   return (
     <SectionCard title="Pomodoro timer" description="A simple client-side focus timer. Closing the tab resets the countdown.">
       <div className="space-y-6 text-center">
         <div>
-          <p className="text-sm uppercase tracking-[0.2em] text-red-400">{mode}</p>
+          <p className="text-sm uppercase tracking-[0.2em] text-red-400">{timerState.mode}</p>
           <p className="mt-3 text-6xl font-bold text-white">{minutes}:{seconds}</p>
         </div>
         <div className="flex flex-wrap justify-center gap-3">
           <button onClick={() => setRunning((current) => !current)} className="rounded-xl bg-red-600 px-5 py-3 font-semibold text-white hover:bg-red-500">{running ? 'Pause' : 'Start'}</button>
-          <button onClick={() => { setRunning(false); setMode('Focus'); setSecondsLeft(25 * 60); }} className="rounded-xl border border-slate-700 px-5 py-3 font-semibold text-slate-200 hover:border-red-400 hover:text-red-300">Reset</button>
+          <button onClick={() => { setRunning(false); setTimerState({ mode: 'Focus', secondsLeft: 25 * 60 }); }} className="rounded-xl border border-slate-700 px-5 py-3 font-semibold text-slate-200 hover:border-red-400 hover:text-red-300">Reset</button>
         </div>
       </div>
     </SectionCard>
