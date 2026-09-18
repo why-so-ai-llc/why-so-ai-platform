@@ -398,7 +398,11 @@ export function WeatherDemo() {
         time: payload.current.time ?? 'Unknown',
       });
     } catch (requestError) {
-      setError(requestError instanceof Error ? requestError.message : 'Unable to load weather right now.');
+      if (requestError instanceof DOMException && requestError.name === 'AbortError') {
+        setError('The weather request timed out. Please try again.');
+      } else {
+        setError(requestError instanceof Error ? requestError.message : 'Unable to load weather right now.');
+      }
     } finally {
       window.clearTimeout(timeout);
       setLoading(false);
@@ -500,7 +504,11 @@ export function JokeDemo() {
       }
       setJoke({ setup: payload.setup, punchline: payload.punchline });
     } catch (requestError) {
-      setError(requestError instanceof Error ? requestError.message : 'Unable to load a joke right now.');
+      if (requestError instanceof DOMException && requestError.name === 'AbortError') {
+        setError('The joke request timed out. Please try again.');
+      } else {
+        setError(requestError instanceof Error ? requestError.message : 'Unable to load a joke right now.');
+      }
     } finally {
       window.clearTimeout(timeout);
       setLoading(false);
