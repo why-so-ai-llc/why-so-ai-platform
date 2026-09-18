@@ -15,7 +15,8 @@ body {
 }
 
 a {
-  @apply transition-colors;
+  transition: color 150ms ease;
+  text-underline-offset: 0.18em;
 }
 
 ::selection {

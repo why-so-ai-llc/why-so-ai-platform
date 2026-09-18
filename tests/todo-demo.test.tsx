@@ -22,7 +22,7 @@ describe('TodoDemo', () => {
 
   it('adds a todo item using crypto.randomUUID without submitting unexpectedly', async () => {
     Object.defineProperty(globalThis, 'crypto', {
-      value: { randomUUID: () => 'todo-id-1' },
+      value: { randomUUID: () => 'uuid-1' },
       configurable: true,
     });
 
@@ -34,7 +34,7 @@ describe('TodoDemo', () => {
     expect(screen.getByText('Ship the route audit')).toBeTruthy();
 
     await waitFor(() => {
-      expect(window.localStorage.getItem('todo-items')).toContain('todo-id-1');
+      expect(window.localStorage.getItem('todo-items')).toContain('todo-uuid-1');
     });
   });
 
