@@ -38,6 +38,14 @@ function SectionCard({ title, children, description }: { title: string; descript
   );
 }
 
+function createClientId(prefix: string) {
+  if (typeof globalThis.crypto !== 'undefined' && typeof globalThis.crypto.randomUUID === 'function') {
+    return globalThis.crypto.randomUUID();
+  }
+
+  return `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+}
+
 export function ContactFormDemo() {
   const [form, setForm] = useState<ContactState>({ name: '', email: '', company: '', goal: '' });
   const [submitted, setSubmitted] = useState(false);
@@ -119,7 +127,7 @@ export function TodoDemo() {
         onSubmit={(event) => {
           event.preventDefault();
           if (!text.trim()) return;
-          setItems((current) => [{ id: crypto.randomUUID(), text: text.trim(), done: false }, ...current]);
+          setItems((current) => [{ id: createClientId('todo'), text: text.trim(), done: false }, ...current]);
           setText('');
         }}
       >
@@ -167,7 +175,7 @@ export function NotesDemo() {
         onSubmit={(event) => {
           event.preventDefault();
           if (!title.trim() || !body.trim()) return;
-          setNotes((current) => [{ id: crypto.randomUUID(), title: title.trim(), body: body.trim() }, ...current]);
+          setNotes((current) => [{ id: createClientId('note'), title: title.trim(), body: body.trim() }, ...current]);
           setTitle('');
           setBody('');
         }}
@@ -220,7 +228,7 @@ export function BookmarksDemo() {
           event.preventDefault();
           try {
             const normalizedUrl = normalizeUrl(url.trim());
-            setBookmarks((current) => [{ id: crypto.randomUUID(), label: label.trim() || normalizedUrl, url: normalizedUrl }, ...current]);
+            setBookmarks((current) => [{ id: createClientId('bookmark'), label: label.trim() || normalizedUrl, url: normalizedUrl }, ...current]);
             setLabel('');
             setUrl('');
             setError(null);
@@ -312,7 +320,7 @@ export function ExpenseTrackerDemo() {
           event.preventDefault();
           const numericAmount = Number(amount);
           if (!label.trim() || Number.isNaN(numericAmount) || numericAmount <= 0) return;
-          setExpenses((current) => [{ id: crypto.randomUUID(), label: label.trim(), amount: numericAmount, category }, ...current]);
+          setExpenses((current) => [{ id: createClientId('expense'), label: label.trim(), amount: numericAmount, category }, ...current]);
           setLabel('');
           setAmount('');
         }}
@@ -573,6 +581,7 @@ export function PasswordGeneratorDemo() {
           </div>
           <div className="flex flex-wrap gap-3">
             <button
+              type="button"
               onClick={() => {
                 try {
                   const nextPassword = createPassword(length, options);
