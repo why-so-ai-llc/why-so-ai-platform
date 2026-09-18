@@ -1,58 +1,66 @@
-# Why So AI Platform - Setup Guide
+# Why So AI Platform Setup
 
-Welcome to the Why So AI Platform! This guide will help you get started.
+## Requirements
 
-## Getting Started
+- Node.js 20+
+- npm 10+
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/why-so-ai-llc/why-so-ai-platform.git
-   cd why-so-ai-platform
-   ```
+## Local development
 
-2. **Install dependencies**
+1. Clone the repository.
+2. Install dependencies:
    ```bash
    npm install
    ```
-
-3. **Run the development server**
+3. Start the development server:
    ```bash
    npm run dev
    ```
+4. Open `http://localhost:3000`.
 
-4. **Open in browser**
-   Navigate to `http://localhost:3000`
+## Validation commands
 
-## I'm Feeling Lucky
+Run these before shipping changes:
 
-Click the **"I'm Feeling Lucky"** button to get started with a random AI service recommendation!
-
-## Project Structure
-
-```
-/app                 - Next.js application
-/components          - React components
-/pages               - Website pages
-/services            - Service definitions
-/styles              - Global styles
-/public              - Static assets
+```bash
+npm run lint
+npm run test
+npm run build
 ```
 
-## Services Offered
+## Route overview
 
-- 🤖 AI Software Support
-- ⚙️ Digital Automation
-- 🔄 Workflow Creation
-- 🔗 Custom AI Integration
-- 📊 AI Content & Tools
+### Navigation routes
 
-## Next Steps
+- `/services`
+- `/pricing`
+- `/case-studies`
+- `/blog`
+- `/tools`
+- `/contact`
 
-- [ ] Customize branding and colors
-- [ ] Add team information
-- [ ] Set up payment integration (Stripe)
-- [ ] Deploy to production
+### Service routes
 
----
+- `/services/ai-support`
+- `/services/automation`
+- `/services/workflows`
+- `/services/integration`
+- `/services/content-tools`
 
-**Questions?** Check out the documentation or create an issue!
+### Tool routes
+
+- `/todo`
+- `/notes`
+- `/bookmarks`
+- `/pomodoro`
+- `/expense-tracker`
+- `/weather`
+- `/calculator`
+- `/password-generator`
+- `/joke-generator`
+
+## Notes about the current implementation
+
+- Tools that persist data do so in browser `localStorage` only.
+- Weather and joke pages call public demo APIs and surface failures when the network or remote service is unavailable.
+- The contact form prepares a local summary and a `mailto:` draft; it does not send data to a backend from this repository.
