@@ -502,7 +502,7 @@ export function CalculatorDemo() {
   ];
 
   return (
-    <SectionCard title="Calculator" description="Client-side calculator with a keypad and recent history stored locally in this browser.">
+    <SectionCard title="Calculator" description="Run quick arithmetic with an on-page keypad and recent local history.">
       {!hydrated ? <p className="text-sm text-slate-400">Loading saved calculations…</p> : null}
       <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
         <div className="space-y-4">

@@ -128,6 +128,7 @@ export const tools: Tool[] = [
     description: 'Run quick arithmetic with an on-page keypad and recent local history.',
     icon: '🧮',
     category: 'Utilities',
+    usesLocalStorage: true,
   },
   {
     slug: 'password-generator',
