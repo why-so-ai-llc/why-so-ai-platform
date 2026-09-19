@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { blogRoutes, getAllKnownRoutes, navItems, serviceRoutes, toolRoutes } from '../lib/site';
+import { blogRoutes, getAllKnownRoutes, navItems, serviceRoutes, tools, toolRoutes } from '../lib/site';
 
 describe('site routes', () => {
   it('keeps every known route unique', () => {
@@ -13,5 +13,9 @@ describe('site routes', () => {
       expect(route.startsWith('/')).toBe(true);
       expect(route).not.toContain('#');
     });
+  });
+
+  it('keeps calculator metadata aligned with the implemented browser history', () => {
+    expect(tools.find((tool) => tool.slug === 'calculator')?.usesLocalStorage).toBe(true);
   });
 });

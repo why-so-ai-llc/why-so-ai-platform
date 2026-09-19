@@ -41,11 +41,11 @@ npm run start
 
 ### Service detail pages
 
-- `/services/ai-support`
-- `/services/automation`
-- `/services/workflows`
-- `/services/integration`
-- `/services/content-tools`
+- `/services/ai-strategy-consulting`
+- `/services/predictive-analytics`
+- `/services/generative-ai-training`
+- `/services/ai-workflow-automation`
+- `/services/custom-ai-integration`
 
 ### Tool pages
 

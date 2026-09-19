@@ -25,7 +25,7 @@ describe('dynamic route pages', () => {
   });
 
   it('renders a known service slug and rejects an unknown slug', async () => {
-    const rendered = await ServiceDetailPage({ params: Promise.resolve({ slug: 'ai-support' }) });
+    const rendered = await ServiceDetailPage({ params: Promise.resolve({ slug: 'ai-strategy-consulting' }) });
     expect(rendered).toBeTruthy();
 
     await expect(ServiceDetailPage({ params: Promise.resolve({ slug: 'missing-service' }) })).rejects.toThrow('NOT_FOUND');

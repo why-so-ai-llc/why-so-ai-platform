@@ -7,7 +7,7 @@ import { SiteHeader } from '@/components/site-header';
 
 export const metadata: Metadata = {
   title: 'Why So AI',
-  description: 'Why So AI showcases AI support, automation services, and browser-based demo tools.',
+  description: 'Why So AI showcases AI consulting, automation services, and browser-based demo tools.',
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
