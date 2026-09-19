@@ -12,6 +12,7 @@ type NoteItem = { id: string; title: string; body: string };
 type BookmarkItem = { id: string; label: string; url: string };
 type ExpenseItem = { id: string; label: string; amount: number; category: string };
 type ContactState = { name: string; email: string; company: string; goal: string };
+type CalculationHistoryItem = { id: string; expression: string; result: string };
 
 type WeatherSnapshot = {
   temperature: number;
@@ -459,32 +460,120 @@ export function WeatherDemo() {
 }
 
 export function CalculatorDemo() {
+  const [history, setHistory, hydrated] = useLocalStorageState<CalculationHistoryItem[]>('calculator-history', []);
   const [expression, setExpression] = useState('');
   const [result, setResult] = useState<string>('');
 
   const evaluateExpression = () => {
-    if (!/^[0-9+\-*/().\s]+$/.test(expression)) {
+    const nextExpression = expression.trim();
+
+    if (!nextExpression) {
+      setResult('Enter an expression.');
+      return;
+    }
+
+    if (!/^[0-9+\-*/().\s]+$/.test(nextExpression)) {
       setResult('Only simple arithmetic characters are allowed.');
       return;
     }
 
     try {
-      const value = evaluateArithmeticExpression(expression);
-      setResult(String(value));
+      const value = String(evaluateArithmeticExpression(nextExpression));
+      setResult(value);
+      setHistory((current) => [
+        { id: createClientId('calculation'), expression: nextExpression, result: value },
+        ...current.filter((item) => item.expression !== nextExpression || item.result !== value),
+      ].slice(0, 6));
     } catch {
       setResult('Invalid expression.');
     }
   };
 
+  const appendToken = (token: string) => {
+    setExpression((current) => `${current}${token}`);
+  };
+
+  const keypadRows = [
+    ['(', ')', '⌫', 'C'],
+    ['7', '8', '9', '/'],
+    ['4', '5', '6', '*'],
+    ['1', '2', '3', '-'],
+    ['0', '.', '+', '='],
+  ];
+
   return (
-    <SectionCard title="Calculator" description="Client-side calculator for trusted arithmetic input only.">
-      <div className="space-y-4">
-        <input value={expression} onChange={(event) => setExpression(event.target.value)} placeholder="(12 + 4) / 2" className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white focus:border-red-400 focus:outline-none" />
-        <div className="flex flex-wrap gap-3">
-          <button type="button" onClick={evaluateExpression} className="rounded-xl bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-500">Evaluate</button>
-          <button type="button" onClick={() => { setExpression(''); setResult(''); }} className="rounded-xl border border-slate-700 px-4 py-3 font-semibold text-slate-200 hover:border-red-400 hover:text-red-300">Clear</button>
+    <SectionCard title="Calculator" description="Client-side calculator with a keypad and recent history stored locally in this browser.">
+      {!hydrated ? <p className="text-sm text-slate-400">Loading saved calculations…</p> : null}
+      <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="space-y-4">
+          <input value={expression} onChange={(event) => setExpression(event.target.value)} placeholder="(12 + 4) / 2" className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white focus:border-red-400 focus:outline-none" />
+          <div className="grid grid-cols-4 gap-3">
+            {keypadRows.flat().map((token) => (
+              <button
+                key={token}
+                type="button"
+                onClick={() => {
+                  if (token === '=') {
+                    evaluateExpression();
+                    return;
+                  }
+
+                  if (token === 'C') {
+                    setExpression('');
+                    setResult('');
+                    return;
+                  }
+
+                  if (token === '⌫') {
+                    setExpression((current) => current.slice(0, -1));
+                    return;
+                  }
+
+                  appendToken(token);
+                }}
+                className={token === '=' ? 'rounded-xl bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-500' : 'rounded-xl border border-slate-700 px-4 py-3 font-semibold text-slate-200 hover:border-red-400 hover:text-red-300'}
+              >
+                {token}
+              </button>
+            ))}
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <button type="button" onClick={evaluateExpression} className="rounded-xl bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-500">Evaluate</button>
+            <button type="button" onClick={() => { setExpression(''); setResult(''); }} className="rounded-xl border border-slate-700 px-4 py-3 font-semibold text-slate-200 hover:border-red-400 hover:text-red-300">Clear</button>
+            <button type="button" onClick={() => setExpression('(12 + 4) / 2')} className="rounded-xl border border-slate-700 px-4 py-3 font-semibold text-slate-200 hover:border-red-400 hover:text-red-300">Try example</button>
+          </div>
+          <p className="rounded-xl border border-slate-800 bg-slate-950/70 p-4 text-slate-200">{result || 'Result will appear here.'}</p>
         </div>
-        <p className="rounded-xl border border-slate-800 bg-slate-950/70 p-4 text-slate-200">{result || 'Result will appear here.'}</p>
+        <div className="rounded-2xl border border-slate-800 bg-slate-950/70 p-5">
+          <div className="flex items-center justify-between gap-3">
+            <h3 className="font-semibold text-white">Recent calculations</h3>
+            <button
+              type="button"
+              onClick={() => setHistory([])}
+              disabled={history.length === 0}
+              className="text-sm text-red-300 hover:text-red-200 disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              Clear history
+            </button>
+          </div>
+          <div className="mt-4 space-y-3">
+            {history.length === 0 ? <p className="text-sm text-slate-400">Evaluate expressions to build a local history.</p> : null}
+            {history.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => {
+                  setExpression(item.expression);
+                  setResult(item.result);
+                }}
+                className="block w-full rounded-xl border border-slate-800 bg-slate-900 px-4 py-3 text-left hover:border-red-400/50"
+              >
+                <p className="text-sm text-slate-300">{item.expression}</p>
+                <p className="mt-1 font-semibold text-white">= {item.result}</p>
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
     </SectionCard>
   );

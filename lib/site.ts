@@ -125,7 +125,7 @@ export const tools: Tool[] = [
   {
     slug: 'calculator',
     name: 'Calculator',
-    description: 'Run quick arithmetic in a small browser calculator.',
+    description: 'Run quick arithmetic with an on-page keypad and recent local history.',
     icon: '🧮',
     category: 'Utilities',
   },
