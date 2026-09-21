@@ -6,6 +6,11 @@ export type Service = {
   outcomes: string[];
 };
 
+export type CaseStudy = {
+  title: string;
+  outcomes: string[];
+};
+
 export type Tool = {
   slug: string;
   name: string;
@@ -73,6 +78,11 @@ export const services: Service[] = [
     outcomes: ['API integration strategy', 'Custom UX flows', 'Deployment planning'],
   },
 ];
+
+export const caseStudies: CaseStudy[] = services.map(({ name, outcomes }) => ({
+  title: name,
+  outcomes,
+}));
 
 export const tools: Tool[] = [
   {

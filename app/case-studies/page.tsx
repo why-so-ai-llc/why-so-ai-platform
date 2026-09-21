@@ -1,19 +1,5 @@
 import { PageHero } from '@/components/page-hero';
-
-const caseStudies = [
-  {
-    title: 'Support workflow triage',
-    outcome: 'Reduced manual sorting by turning incoming request themes into a prioritized review queue.',
-  },
-  {
-    title: 'Internal knowledge automation',
-    outcome: 'Created a searchable workflow for repeat internal questions without exposing the source data publicly.',
-  },
-  {
-    title: 'Operations reporting prototype',
-    outcome: 'Turned recurring spreadsheet updates into a repeatable demo flow with clear human review checkpoints.',
-  },
-];
+import { caseStudies } from '@/lib/site';
 
 export default function CaseStudiesPage() {
   return (
@@ -27,7 +13,11 @@ export default function CaseStudiesPage() {
         {caseStudies.map((study) => (
           <article key={study.title} className="rounded-2xl border border-slate-800 bg-slate-900/80 p-6">
             <h2 className="text-2xl font-semibold text-white">{study.title}</h2>
-            <p className="mt-3 text-slate-300">{study.outcome}</p>
+            <ul className="mt-4 space-y-2 text-slate-300">
+              {study.outcomes.map((outcome) => (
+                <li key={outcome}>• {outcome}</li>
+              ))}
+            </ul>
           </article>
         ))}
       </div>
