@@ -1,10 +1,27 @@
 import { PageHero } from '@/components/page-hero';
-import { services } from '@/lib/site';
 
-const caseStudies = services.map((service) => ({
-  title: service.name,
-  outcome: service.outcomes.join(' • '),
-}));
+const caseStudies = [
+  {
+    title: 'AI Strategy Consulting',
+    outcome: 'Delivered readiness assessment, roadmap planning, and use case identification.',
+  },
+  {
+    title: 'Predictive Analytics',
+    outcome: 'Delivered trend forecasting, operational optimization, and risk mitigation.',
+  },
+  {
+    title: 'Generative AI Training',
+    outcome: 'Delivered team workshops, best practices, and tool proficiency.',
+  },
+  {
+    title: 'AI Workflow Automation',
+    outcome: 'Delivered task automation, efficiency gains, and reduced overhead.',
+  },
+  {
+    title: 'Custom AI Integration',
+    outcome: 'Delivered API integration strategy, custom UX flows, and deployment planning.',
+  },
+];
 
 export default function CaseStudiesPage() {
   return (
