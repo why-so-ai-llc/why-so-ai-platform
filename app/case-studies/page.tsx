@@ -17,10 +17,20 @@ const getOutcomeEntries = (slug: string, outcomes: string[]) => {
   });
 };
 
-const caseStudies = services.map((service) => ({
-  title: service.name,
-  outcomes: getOutcomeEntries(service.slug, service.outcomes),
-}));
+const caseStudyServiceSlugs = ['ai-strategy-consulting', 'predictive-analytics', 'ai-workflow-automation'];
+
+const caseStudies = caseStudyServiceSlugs.flatMap((slug) => {
+  const service = services.find((entry) => entry.slug === slug);
+
+  return service
+    ? [
+        {
+          title: service.name,
+          outcomes: getOutcomeEntries(service.slug, service.outcomes),
+        },
+      ]
+    : [];
+});
 
 export default function CaseStudiesPage() {
   return (
