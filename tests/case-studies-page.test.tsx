@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 
-import { cleanup, render, screen } from '@testing-library/react';
+import { cleanup, render, screen, within } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 
 import CaseStudiesPage from '../app/case-studies/page';
@@ -15,10 +15,16 @@ describe('CaseStudiesPage', () => {
     render(<CaseStudiesPage />);
 
     services.forEach((service) => {
-      expect(screen.getAllByText(service.name)).toHaveLength(1);
+      const heading = screen.getByRole('heading', { level: 2, name: service.name });
+      const article = heading.closest('article');
+
+      expect(article).not.toBeNull();
+      const outcomes = within(article as HTMLElement)
+        .getAllByRole('listitem')
+        .map((item) => item.textContent?.replace('•', '').trim());
 
       service.outcomes.forEach((outcome) => {
-        expect(screen.getAllByText(`• ${outcome}`)).toHaveLength(1);
+        expect(outcomes).toContain(outcome);
       });
     });
   });
