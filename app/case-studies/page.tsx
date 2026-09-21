@@ -1,19 +1,10 @@
 import { PageHero } from '@/components/page-hero';
+import { services } from '@/lib/site';
 
-const caseStudies = [
-  {
-    title: 'Support workflow triage',
-    outcome: 'Reduced manual sorting by turning incoming request themes into a prioritized review queue.',
-  },
-  {
-    title: 'Internal knowledge automation',
-    outcome: 'Created a searchable workflow for repeat internal questions without exposing the source data publicly.',
-  },
-  {
-    title: 'Operations reporting prototype',
-    outcome: 'Turned recurring spreadsheet updates into a repeatable demo flow with clear human review checkpoints.',
-  },
-];
+const caseStudies = services.map((service) => ({
+  title: service.name,
+  outcomes: service.outcomes,
+}));
 
 export default function CaseStudiesPage() {
   return (
@@ -21,13 +12,17 @@ export default function CaseStudiesPage() {
       <PageHero
         eyebrow="Case studies"
         title="Representative outcomes, not client claims"
-        description="These examples show the kinds of delivery engagements Why So AI supports. They are intentionally generalized because this repository does not ship a customer case-study CMS."
+        description="These examples mirror the current service catalog so new service titles and outcomes stay aligned across the site. They remain generalized because this repository does not ship a customer case-study CMS."
       />
       <div className="mx-auto grid max-w-5xl gap-6 px-4 py-16 sm:px-6 lg:px-8">
         {caseStudies.map((study) => (
           <article key={study.title} className="rounded-2xl border border-slate-800 bg-slate-900/80 p-6">
             <h2 className="text-2xl font-semibold text-white">{study.title}</h2>
-            <p className="mt-3 text-slate-300">{study.outcome}</p>
+            <ul className="mt-4 space-y-2 text-slate-300">
+              {study.outcomes.map((outcome) => (
+                <li key={outcome}>• {outcome}</li>
+              ))}
+            </ul>
           </article>
         ))}
       </div>
