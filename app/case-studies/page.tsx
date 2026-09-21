@@ -1,19 +1,10 @@
 import { PageHero } from '@/components/page-hero';
+import { services } from '@/lib/site';
 
-const caseStudies = [
-  {
-    title: 'Support workflow triage',
-    outcome: 'Reduced manual sorting by turning incoming request themes into a prioritized review queue.',
-  },
-  {
-    title: 'Internal knowledge automation',
-    outcome: 'Created a searchable workflow for repeat internal questions without exposing the source data publicly.',
-  },
-  {
-    title: 'Operations reporting prototype',
-    outcome: 'Turned recurring spreadsheet updates into a repeatable demo flow with clear human review checkpoints.',
-  },
-];
+const caseStudies = services.map((service) => ({
+  title: service.name,
+  outcome: service.outcomes.join(' • '),
+}));
 
 export default function CaseStudiesPage() {
   return (
