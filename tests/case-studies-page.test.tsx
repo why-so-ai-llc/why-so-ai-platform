@@ -15,10 +15,10 @@ describe('CaseStudiesPage', () => {
     render(<CaseStudiesPage />);
 
     services.forEach((service) => {
-      expect(screen.getByText(service.name)).toBeTruthy();
+      expect(document.body.contains(screen.getByText(service.name))).toBe(true);
 
       service.outcomes.forEach((outcome) => {
-        expect(screen.getByText(`• ${outcome}`)).toBeTruthy();
+        expect(document.body.contains(screen.getByText(`• ${outcome}`))).toBe(true);
       });
     });
   });
