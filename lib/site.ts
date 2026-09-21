@@ -4,6 +4,7 @@ export type Service = {
   description: string;
   icon: string;
   outcomes: string[];
+  includeInCaseStudies?: boolean;
 };
 
 export type CaseStudy = {
@@ -48,6 +49,7 @@ export const services: Service[] = [
     description: 'Develop custom roadmaps, assess AI readiness, and identify high-impact use cases for your business.',
     icon: '🎯',
     outcomes: ['Readiness assessment', 'Roadmap planning', 'Use case identification'],
+    includeInCaseStudies: true,
   },
   {
     slug: 'predictive-analytics',
@@ -55,6 +57,7 @@ export const services: Service[] = [
     description: 'Leverage machine learning models to forecast trends, optimize operations, and make data-driven decisions.',
     icon: '📊',
     outcomes: ['Trend forecasting', 'Operational optimization', 'Risk mitigation'],
+    includeInCaseStudies: true,
   },
   {
     slug: 'generative-ai-training',
@@ -62,6 +65,7 @@ export const services: Service[] = [
     description: 'Empower your team with hands-on workshops and training on the latest generative AI tools and best practices.',
     icon: '🎓',
     outcomes: ['Team workshops', 'Best practices', 'Tool proficiency'],
+    includeInCaseStudies: true,
   },
   {
     slug: 'ai-workflow-automation',
@@ -69,6 +73,7 @@ export const services: Service[] = [
     description: 'Integrate intelligent agents to automate repetitive tasks, improving efficiency and reducing operational overhead.',
     icon: '⚙️',
     outcomes: ['Task automation', 'Efficiency gains', 'Reduced overhead'],
+    includeInCaseStudies: true,
   },
   {
     slug: 'custom-ai-integration',
@@ -76,31 +81,16 @@ export const services: Service[] = [
     description: 'Seamlessly embed advanced AI capabilities into your existing products and internal systems without replacing your stack.',
     icon: '🔗',
     outcomes: ['API integration strategy', 'Custom UX flows', 'Deployment planning'],
+    includeInCaseStudies: true,
   },
 ];
 
-export const caseStudies: CaseStudy[] = [
-  {
-    title: 'AI Strategy Consulting',
-    outcomes: ['Readiness assessment', 'Roadmap planning', 'Use case identification'],
-  },
-  {
-    title: 'Predictive Analytics',
-    outcomes: ['Trend forecasting', 'Operational optimization', 'Risk mitigation'],
-  },
-  {
-    title: 'Generative AI Training',
-    outcomes: ['Team workshops', 'Best practices', 'Tool proficiency'],
-  },
-  {
-    title: 'AI Workflow Automation',
-    outcomes: ['Task automation', 'Efficiency gains', 'Reduced overhead'],
-  },
-  {
-    title: 'Custom AI Integration',
-    outcomes: ['API integration strategy', 'Custom UX flows', 'Deployment planning'],
-  },
-];
+export const caseStudies: CaseStudy[] = services
+  .filter((service) => service.includeInCaseStudies)
+  .map(({ name, outcomes }) => ({
+    title: name,
+    outcomes,
+  }));
 
 export const tools: Tool[] = [
   {
