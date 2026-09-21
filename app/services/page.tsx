@@ -8,7 +8,7 @@ export default function ServicesPage() {
     <div>
       <PageHero
         eyebrow="Services"
-        title="AI support and automation services with clear delivery scope"
+        title="AI consulting, analytics, and automation services with clear delivery scope"
         description="These pages outline the current frontend messaging only. Production delivery, integrations, and backend systems are discussed separately during implementation work."
       />
       <div className="mx-auto grid max-w-6xl gap-6 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:px-8">
