@@ -79,10 +79,28 @@ export const services: Service[] = [
   },
 ];
 
-export const caseStudies: CaseStudy[] = services.map(({ name, outcomes }) => ({
-  title: name,
-  outcomes,
-}));
+export const caseStudies: CaseStudy[] = [
+  {
+    title: 'AI Strategy Consulting',
+    outcomes: ['Readiness assessment', 'Roadmap planning', 'Use case identification'],
+  },
+  {
+    title: 'Predictive Analytics',
+    outcomes: ['Trend forecasting', 'Operational optimization', 'Risk mitigation'],
+  },
+  {
+    title: 'Generative AI Training',
+    outcomes: ['Team workshops', 'Best practices', 'Tool proficiency'],
+  },
+  {
+    title: 'AI Workflow Automation',
+    outcomes: ['Task automation', 'Efficiency gains', 'Reduced overhead'],
+  },
+  {
+    title: 'Custom AI Integration',
+    outcomes: ['API integration strategy', 'Custom UX flows', 'Deployment planning'],
+  },
+];
 
 export const tools: Tool[] = [
   {
