@@ -14,8 +14,8 @@ export default function CaseStudiesPage() {
           <article key={study.title} className="rounded-2xl border border-slate-800 bg-slate-900/80 p-6">
             <h2 className="text-2xl font-semibold text-white">{study.title}</h2>
             <ul className="mt-4 list-disc space-y-2 pl-5 text-slate-300">
-              {study.outcomes.map((outcome) => (
-                <li key={outcome}>{outcome}</li>
+              {study.outcomes.map((outcome, index) => (
+                <li key={`${study.title}-${index}`}>{outcome}</li>
               ))}
             </ul>
           </article>
