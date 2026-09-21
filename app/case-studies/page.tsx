@@ -19,9 +19,9 @@ export default function CaseStudiesPage() {
         {caseStudies.map((study) => (
           <article key={study.slug} className="rounded-2xl border border-slate-800 bg-slate-900/80 p-6">
             <h2 className="text-2xl font-semibold text-white">{study.title}</h2>
-            <ul className="mt-3 space-y-2 text-slate-300">
-              {study.outcomes.map((outcome) => (
-                <li key={outcome}>• {outcome}</li>
+            <ul className="mt-3 list-disc space-y-2 pl-5 text-slate-300 marker:text-slate-400">
+              {study.outcomes.map((outcome, index) => (
+                <li key={`${study.slug}-${index}`}>{outcome}</li>
               ))}
             </ul>
           </article>
