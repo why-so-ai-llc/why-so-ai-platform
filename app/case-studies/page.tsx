@@ -4,7 +4,7 @@ import { services } from '@/lib/site';
 const caseStudies = services.map((service) => ({
   slug: service.slug,
   title: service.name,
-  outcome: service.outcomes.join(' • '),
+  outcomes: service.outcomes,
 }));
 
 export default function CaseStudiesPage() {
@@ -19,7 +19,11 @@ export default function CaseStudiesPage() {
         {caseStudies.map((study) => (
           <article key={study.slug} className="rounded-2xl border border-slate-800 bg-slate-900/80 p-6">
             <h2 className="text-2xl font-semibold text-white">{study.title}</h2>
-            <p className="mt-3 text-slate-300">{study.outcome}</p>
+            <ul className="mt-3 space-y-2 text-slate-300">
+              {study.outcomes.map((outcome) => (
+                <li key={outcome}>• {outcome}</li>
+              ))}
+            </ul>
           </article>
         ))}
       </div>
