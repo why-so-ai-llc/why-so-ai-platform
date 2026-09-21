@@ -3,7 +3,7 @@ import { services } from '@/lib/site';
 
 const caseStudies = services.map((service) => ({
   title: service.name,
-  outcome: service.outcomes.join(' • '),
+  outcome: service.outcomes[0] ?? service.description,
 }));
 
 export default function CaseStudiesPage() {
