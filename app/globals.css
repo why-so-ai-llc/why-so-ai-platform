@@ -10,7 +10,9 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
+body {background: url('/Screenshot_20260924-164902_Gemini.png') no-repeat center center fixed;
+background-size: cover;
+      
   @apply bg-slate-950 text-slate-100 antialiased;
 }
 
