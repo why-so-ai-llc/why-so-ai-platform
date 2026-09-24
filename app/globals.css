@@ -27,6 +27,12 @@ body {
   @apply text-slate-100 antialiased;
 }
 
+@media (max-width: 768px), (prefers-reduced-motion: reduce) {
+  body {
+    background-attachment: scroll;
+  }
+}
+
 h1,
 h2,
 h3,

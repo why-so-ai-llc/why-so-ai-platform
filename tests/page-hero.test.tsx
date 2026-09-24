@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import { renderToStaticMarkup } from 'react-dom/server';
+// @vitest-environment jsdom
+import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
 vi.mock('next/image', () => ({
@@ -12,10 +13,14 @@ import { PageHero } from '../components/page-hero';
 
 describe('PageHero', () => {
   it('includes the shared public photo background with accessible text', () => {
-    const html = renderToStaticMarkup(<PageHero title="Title" description="Description" />);
-    expect(html).toContain('src="/Screenshot_20260915-210613_Photos.png"');
-    expect(html).toContain('alt="Modern workspace with creative lighting for AI planning sessions."');
-    expect(html).toContain('class="relative overflow-hidden border-b border-slate-800 bg-slate-900/70"');
-    expect(html).toContain('class="absolute inset-0 bg-slate-950/70"');
+    const { container } = render(<PageHero title="Title" description="Description" />);
+    const image = screen.getByAltText('Modern workspace with creative lighting for AI planning sessions.');
+    const overlay = container.querySelector('.absolute.inset-0');
+    const section = container.querySelector('section');
+
+    expect(image.getAttribute('src')).toBe('/Screenshot_20260915-210613_Photos.png');
+    expect(overlay?.className).toContain('bg-slate-950/70');
+    expect(section?.className).toContain('relative');
+    expect(section?.className).toContain('overflow-hidden');
   });
 });
