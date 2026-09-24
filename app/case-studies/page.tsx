@@ -2,16 +2,24 @@ import { PageHero } from '@/components/page-hero';
 
 const caseStudies = [
   {
-    title: 'Support workflow triage',
-    outcome: 'Reduced manual sorting by turning incoming request themes into a prioritized review queue.',
+    title: 'AI Strategy Consulting',
+    outcome: 'Delivered readiness assessment, roadmap planning, and use case identification.',
   },
   {
-    title: 'Internal knowledge automation',
-    outcome: 'Created a searchable workflow for repeat internal questions without exposing the source data publicly.',
+    title: 'Predictive Analytics',
+    outcome: 'Delivered trend forecasting, operational optimization, and risk mitigation.',
   },
   {
-    title: 'Operations reporting prototype',
-    outcome: 'Turned recurring spreadsheet updates into a repeatable demo flow with clear human review checkpoints.',
+    title: 'Generative AI Training',
+    outcome: 'Delivered team workshops, best practices, and tool proficiency.',
+  },
+  {
+    title: 'AI Workflow Automation',
+    outcome: 'Delivered task automation, efficiency gains, and reduced overhead.',
+  },
+  {
+    title: 'Custom AI Integration',
+    outcome: 'Delivered API integration strategy, custom UX flows, and deployment planning.',
   },
 ];
 
