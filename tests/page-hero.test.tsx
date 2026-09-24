@@ -15,5 +15,7 @@ describe('PageHero', () => {
     const html = renderToStaticMarkup(<PageHero title="Title" description="Description" />);
     expect(html).toContain('src="/Screenshot_20260915-210613_Photos.png"');
     expect(html).toContain('alt="Modern workspace with creative lighting for AI planning sessions."');
+    expect(html).toContain('class="relative overflow-hidden border-b border-slate-800 bg-slate-900/70"');
+    expect(html).toContain('class="absolute inset-0 bg-slate-950/70"');
   });
 });

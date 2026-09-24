@@ -14,9 +14,14 @@ body {
   --font-body: var(--font-lordish), 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   --font-display: var(--font-lordish), 'Trebuchet MS', Arial, sans-serif;
   --font-accent: var(--font-vampire-wars), 'Times New Roman', serif;
-  background: url('/Screenshot_20260924-164902_Gemini.png') no-repeat center center fixed;
+  background-image:
+    linear-gradient(to bottom right, rgb(2 6 23 / 0.9), rgb(15 23 42 / 0.85), rgb(2 6 23 / 0.9)),
+    url('/Screenshot_20260924-164902_Gemini.png');
+  background-repeat: no-repeat;
   background-color: #020617;
+  background-position: center;
   background-size: cover;
+  background-attachment: fixed;
   font-family: var(--font-body);
   font-synthesis: none;
   @apply text-slate-100 antialiased;
