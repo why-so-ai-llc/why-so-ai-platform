@@ -27,7 +27,7 @@ body {
   @apply text-slate-100 antialiased;
 }
 
-@media (max-width: 768px), (prefers-reduced-motion: reduce) {
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
   body {
     background-attachment: scroll;
   }
