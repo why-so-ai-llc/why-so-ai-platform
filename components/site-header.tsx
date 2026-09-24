@@ -11,7 +11,7 @@ export function SiteHeader() {
             W
           </span>
           <span>
-            <span className="block text-lg font-semibold text-white">Why So AI</span>
+            <span className="block text-lg font-semibold text-white font-accent">Why So AI</span>
             <span className="block text-xs uppercase tracking-[0.2em] text-slate-400">Automation & AI systems</span>
           </span>
         </Link>

@@ -4,16 +4,46 @@
 
 :root {
   color-scheme: dark;
+  --font-body: var(--font-lordish), 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-display: var(--font-lordish), 'Trebuchet MS', Arial, sans-serif;
+  --font-accent: var(--font-vampire-wars), 'Times New Roman', serif;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-body {background: url('/Screenshot_20260924-164902_Gemini.png') no-repeat center center fixed;
-background-size: cover;
-      
+body {
+  background: url('/Screenshot_20260924-164902_Gemini.png') no-repeat center center fixed;
+  background-size: cover;
+  font-family: var(--font-body);
+  font-synthesis: none;
   @apply bg-slate-950 text-slate-100 antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+nav,
+button,
+[role='button'],
+input,
+textarea,
+select,
+label,
+th,
+dt {
+  font-family: var(--font-display);
+}
+
+em,
+i,
+.font-accent {
+  font-family: var(--font-accent);
+  font-style: italic;
 }
 
 a {
