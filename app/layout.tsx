@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import './globals.css';
 
+import { Analytics } from '@vercel/analytics/next';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
 
@@ -19,6 +20,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
           <main className="flex-1">{children}</main>
           <SiteFooter />
         </div>
+        <Analytics />
       </body>
     </html>
   );
