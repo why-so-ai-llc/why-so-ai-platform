@@ -35,8 +35,6 @@ dt {
   font-family: var(--font-display);
 }
 
-em,
-i,
 .font-accent {
   font-family: var(--font-accent);
   font-style: italic;
