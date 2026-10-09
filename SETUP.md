@@ -64,3 +64,14 @@ npm run build
 - Tools that persist data do so in browser `localStorage` only.
 - Weather and joke pages call public demo APIs and surface failures when the network or remote service is unavailable.
 - The contact form prepares a local summary and a `mailto:` draft; it does not send data to a backend from this repository.
+
+## Payments
+
+Set these environment variables (e.g. in `.env.local` / Vercel):
+
+- `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`
+- `STRIPE_SECRET_KEY`
+- `STRIPE_WEBHOOK_SECRET` (for `/api/webhooks/stripe`)
+- `NEXT_PUBLIC_VENMO_USERNAME=whysoai`
+
+Plan prices are configured in `lib/subscription-plans.ts`.

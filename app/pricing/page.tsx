@@ -3,6 +3,10 @@
 import { useMemo, useState } from 'react';
 
 import { PageHero } from '@/components/page-hero';
+import { PaymentMethod, PaymentMethodSelector } from '@/components/payment-method-selector';
+import { StripeCheckout } from '@/components/stripe-checkout';
+import { VenmoPayment } from '@/components/venmo-payment';
+import { annualSavingsPercent, formatPrice, PlanId, subscriptionPlans } from '@/lib/subscription-plans';
 
 const baseRates = {
   discovery: 1500,
@@ -13,6 +17,8 @@ const baseRates = {
 export default function PricingPage() {
   const [engagement, setEngagement] = useState<'discovery' | 'integration' | 'automation'>('discovery');
   const [complexity, setComplexity] = useState(1);
+  const [plan, setPlan] = useState<PlanId>('annual');
+  const [method, setMethod] = useState<PaymentMethod>('card');
 
   const estimate = useMemo(() => baseRates[engagement] * complexity, [complexity, engagement]);
 
@@ -23,6 +29,23 @@ export default function PricingPage() {
         title="High-level project sizing"
         description="This estimator is intentionally lightweight. It gives a directional frontend estimate and does not submit or store pricing requests on a backend."
       />
+      <div className="mx-auto max-w-4xl px-4 pt-16 sm:px-6 lg:px-8">
+        <h2 className="text-3xl font-bold text-white">Platform subscription</h2>
+        <div className="mt-6 grid gap-4 sm:grid-cols-2">
+          {Object.values(subscriptionPlans).map((p) => (
+            <button key={p.id} type="button" onClick={() => setPlan(p.id)} aria-pressed={plan === p.id} className={`rounded-2xl border p-6 text-left ${plan === p.id ? 'border-red-400 bg-red-500/10' : 'border-slate-800 bg-slate-900/80 hover:border-slate-600'}`}>
+              <p className="text-sm uppercase tracking-[0.2em] text-red-300">{p.name}{p.id === 'annual' ? ` · Save ${annualSavingsPercent()}%` : ''}</p>
+              <p className="mt-3 text-4xl font-bold text-white">{formatPrice(p.amountCents)}<span className="text-base font-normal text-slate-400"> / {p.interval}</span></p>
+              <p className="mt-2 text-sm text-slate-300">{p.description}</p>
+              <ul className="mt-3 space-y-1 text-sm text-slate-300">{p.features.map((f) => <li key={f}>✓ {f}</li>)}</ul>
+            </button>
+          ))}
+        </div>
+        <div className="mt-6 space-y-4 rounded-2xl border border-slate-800 bg-slate-900/80 p-6 sm:p-8">
+          <PaymentMethodSelector value={method} onChange={setMethod} />
+          {method === 'card' ? <StripeCheckout plan={plan} /> : <VenmoPayment plan={plan} />}
+        </div>
+      </div>
       <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-8 rounded-2xl border border-slate-800 bg-slate-900/80 p-8 lg:grid-cols-[1fr_0.9fr]">
           <div className="space-y-5">
