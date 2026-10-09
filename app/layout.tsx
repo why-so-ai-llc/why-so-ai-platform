@@ -1,10 +1,27 @@
 import type { Metadata } from 'next';
+import localFont from 'next/font/local';
 import type { ReactNode } from 'react';
 import './globals.css';
 
 import { Analytics } from '@vercel/analytics/next';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
+
+const lordish = localFont({
+  src: '../public/Lordish-Regular.ttf',
+  variable: '--font-lordish',
+  weight: '400',
+  style: 'normal',
+  display: 'swap',
+});
+
+const vampireWars = localFont({
+  src: '../public/Vampire Wars Italic.ttf',
+  variable: '--font-vampire-wars',
+  weight: '400',
+  style: 'italic',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'Why So AI',
@@ -14,7 +31,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-slate-100">
+      <body
+        className={`${lordish.variable} ${vampireWars.variable} min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-slate-100`}
+      >
         <div className="flex min-h-screen flex-col">
           <SiteHeader />
           <main className="flex-1">{children}</main>

@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -50,6 +51,29 @@ export default function HomePage() {
             </Link>
           </div>
         ) : null}
+      </section>
+
+      <section className="mx-auto max-w-6xl px-4 pb-14 sm:px-6 lg:px-8">
+        <div className="grid gap-6 md:grid-cols-2">
+          <div className="relative min-h-64 overflow-hidden rounded-2xl border border-slate-800">
+            <Image
+              src="/Screenshot_20260916-005656_Photos.png"
+              alt="Team collaboration board with sticky notes and planning artifacts."
+              fill
+              className="object-cover object-center"
+              sizes="(min-width: 768px) 50vw, 100vw"
+            />
+          </div>
+          <div className="relative min-h-64 overflow-hidden rounded-2xl border border-slate-800">
+            <Image
+              src="/Screenshot_20260915-210613_Photos.png"
+              alt="Focused work setup used to design AI workflows and demos."
+              fill
+              className="object-cover object-center"
+              sizes="(min-width: 768px) 50vw, 100vw"
+            />
+          </div>
+        </div>
       </section>
 
       <section className="mx-auto grid max-w-6xl gap-6 px-4 pb-16 sm:px-6 lg:grid-cols-3 lg:px-8">
