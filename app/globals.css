@@ -52,6 +52,26 @@ dt {
   font-style: italic;
 }
 
+.scan-line {
+  animation: scan-line 1.7s ease-in-out infinite;
+}
+
+@keyframes scan-line {
+  0% {
+    transform: translateY(0);
+    opacity: 0.35;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(12rem);
+    opacity: 0.35;
+  }
+}
+
 a {
   transition: color 150ms ease;
   text-underline-offset: 0.18em;
@@ -59,4 +79,32 @@ a {
 
 ::selection {
   @apply bg-red-500/50 text-white;
+}
+
+@media print {
+  body {
+    background: #fff !important;
+    color: #111 !important;
+  }
+
+  body * {
+    color: #111 !important;
+  }
+
+  .no-print,
+  header,
+  footer {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  .print-document {
+    border: 0 !important;
+    background: #fff !important;
+    color: #111 !important;
+    box-shadow: none !important;
+  }
 }
