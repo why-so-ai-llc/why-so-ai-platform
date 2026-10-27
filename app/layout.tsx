@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter, Space_Grotesk } from 'next/font/google';
 import type { ReactNode } from 'react';
 import './globals.css';
@@ -24,11 +24,17 @@ export const metadata: Metadata = {
   description: 'Why So AI showcases AI consulting, automation services, and browser-based demo tools.',
 };
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#000000',
+};
+
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-slate-100`}
+        className={`${inter.variable} ${spaceGrotesk.variable} min-h-screen bg-black text-white`}
       >
         <div className="flex min-h-screen flex-col">
           <SiteHeader />
