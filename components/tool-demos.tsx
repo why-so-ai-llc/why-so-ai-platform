@@ -29,10 +29,10 @@ const locationOptions = [
 
 function SectionCard({ title, children, description }: { title: string; description?: string; children: React.ReactNode }) {
   return (
-    <section className="rounded-2xl border border-slate-800 bg-slate-900/80 p-6 shadow-xl shadow-black/20">
+    <section className="rounded-2xl border border-white/15 bg-white/5 p-6 shadow-xl shadow-black/20">
       <div className="mb-5">
         <h2 className="text-2xl font-semibold text-white">{title}</h2>
-        {description ? <p className="mt-2 text-sm text-slate-400">{description}</p> : null}
+        {description ? <p className="mt-2 text-sm text-white/60">{description}</p> : null}
       </div>
       {children}
     </section>
@@ -65,36 +65,36 @@ export function ContactFormDemo() {
             ['email', 'Email'],
             ['company', 'Company'],
           ].map(([key, label]) => (
-            <label key={key} className="block text-sm font-medium text-slate-200">
+            <label key={key} className="block text-sm font-medium text-white">
               {label}
               <input
                 required={key !== 'company'}
                 type={key === 'email' ? 'email' : 'text'}
                 value={form[key as keyof ContactState]}
                 onChange={(event) => setForm((current) => ({ ...current, [key]: event.target.value }))}
-                className="mt-2 w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none ring-0 transition focus:border-red-400"
+                className="mt-2 w-full rounded-xl border border-white/15 bg-black px-4 py-3 text-white outline-none ring-0 transition focus:border-lime-400"
               />
             </label>
           ))}
-          <label className="block text-sm font-medium text-slate-200">
+          <label className="block text-sm font-medium text-white">
             Project goal
             <textarea
               required
               value={form.goal}
               onChange={(event) => setForm((current) => ({ ...current, goal: event.target.value }))}
               rows={5}
-              className="mt-2 w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none transition focus:border-red-400"
+              className="mt-2 w-full rounded-xl border border-white/15 bg-black px-4 py-3 text-white outline-none transition focus:border-lime-400"
             />
           </label>
-          <button type="submit" className="rounded-xl bg-red-600 px-5 py-3 font-semibold text-white hover:bg-red-500">
+          <button type="submit" className="rounded-xl bg-lime-400 px-5 py-3 font-semibold text-black hover:bg-lime-300">
             Prepare request summary
           </button>
         </form>
       </SectionCard>
       <SectionCard title="Next step" description="Use the generated summary below or email directly.">
         {submitted ? (
-          <div className="space-y-3 text-sm text-slate-300">
-            <p className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-3 text-emerald-200">
+          <div className="space-y-3 text-sm text-white/80">
+            <p className="rounded-xl border border-lime-400/30 bg-lime-400/10 p-3 text-lime-300">
               Demo only: nothing has been sent from this site.
             </p>
             <p><span className="font-semibold text-white">Name:</span> {form.name}</p>
@@ -102,14 +102,14 @@ export function ContactFormDemo() {
             <p><span className="font-semibold text-white">Company:</span> {form.company || 'Not provided'}</p>
             <p><span className="font-semibold text-white">Goal:</span> {form.goal}</p>
             <a
-              className="inline-flex rounded-xl border border-slate-700 px-4 py-3 font-semibold text-slate-200 hover:border-red-400 hover:text-red-300"
+              className="inline-flex rounded-xl border border-white/15 px-4 py-3 font-semibold text-white hover:border-lime-400 hover:text-lime-300"
               href={`mailto:hello@whysoai.com?subject=${encodeURIComponent(`Consultation request from ${form.name}`)}&body=${encodeURIComponent(`${form.goal}\n\nCompany: ${form.company || 'Not provided'}\nReply to: ${form.email}`)}`}
             >
               Open email draft
             </a>
           </div>
         ) : (
-          <p className="text-sm text-slate-400">Fill out the form to generate a local summary and a mailto draft.</p>
+          <p className="text-sm text-white/60">Fill out the form to generate a local summary and a mailto draft.</p>
         )}
       </SectionCard>
     </div>
@@ -122,7 +122,7 @@ export function TodoDemo() {
 
   return (
     <SectionCard title="Todo list" description="Stored in localStorage after hydration. Your tasks stay in this browser.">
-      {!hydrated ? <p className="text-sm text-slate-400">Loading locally saved tasks…</p> : null}
+      {!hydrated ? <p className="text-sm text-white/60">Loading locally saved tasks…</p> : null}
       <form
         className="mb-4 flex gap-3"
         onSubmit={(event) => {
@@ -136,24 +136,24 @@ export function TodoDemo() {
           value={text}
           onChange={(event) => setText(event.target.value)}
           placeholder="Add a task"
-          className="flex-1 rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white focus:border-red-400 focus:outline-none"
+          className="flex-1 rounded-xl border border-white/15 bg-black px-4 py-3 text-white focus:border-lime-400 focus:outline-none"
         />
-        <button type="submit" className="rounded-xl bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-500">Add</button>
+        <button type="submit" className="rounded-xl bg-lime-400 px-4 py-3 font-semibold text-black hover:bg-lime-300">Add</button>
       </form>
       <div className="space-y-3">
-        {items.length === 0 ? <p className="text-sm text-slate-400">No tasks yet.</p> : null}
+        {items.length === 0 ? <p className="text-sm text-white/60">No tasks yet.</p> : null}
         {items.map((item) => (
-          <div key={item.id} className="flex items-center justify-between rounded-xl border border-slate-800 bg-slate-950/70 px-4 py-3">
-            <label className="flex items-center gap-3 text-slate-200">
+          <div key={item.id} className="flex items-center justify-between rounded-xl border border-white/15 bg-white/5 px-4 py-3">
+            <label className="flex items-center gap-3 text-white">
               <input
                 type="checkbox"
                 checked={item.done}
                 onChange={() => setItems((current) => current.map((currentItem) => currentItem.id === item.id ? { ...currentItem, done: !currentItem.done } : currentItem))}
-                className="h-4 w-4 accent-red-500"
+                className="h-4 w-4 accent-lime-400"
               />
-              <span className={item.done ? 'text-slate-500 line-through' : ''}>{item.text}</span>
+              <span className={item.done ? 'text-white/60 line-through' : ''}>{item.text}</span>
             </label>
-            <button type="button" onClick={() => setItems((current) => current.filter((currentItem) => currentItem.id !== item.id))} className="text-sm text-red-300 hover:text-red-200">
+            <button type="button" onClick={() => setItems((current) => current.filter((currentItem) => currentItem.id !== item.id))} className="text-sm text-lime-300 hover:text-lime-300">
               Remove
             </button>
           </div>
@@ -170,7 +170,7 @@ export function NotesDemo() {
 
   return (
     <SectionCard title="Notes" description="A lightweight local-only notes scratchpad.">
-      {!hydrated ? <p className="text-sm text-slate-400">Loading notes…</p> : null}
+      {!hydrated ? <p className="text-sm text-white/60">Loading notes…</p> : null}
       <form
         className="grid gap-3 md:grid-cols-[1fr_2fr_auto]"
         onSubmit={(event) => {
@@ -181,20 +181,20 @@ export function NotesDemo() {
           setBody('');
         }}
       >
-        <input value={title} onChange={(event) => setTitle(event.target.value)} placeholder="Title" className="rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white focus:border-red-400 focus:outline-none" />
-        <input value={body} onChange={(event) => setBody(event.target.value)} placeholder="Quick note" className="rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white focus:border-red-400 focus:outline-none" />
-        <button type="submit" className="rounded-xl bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-500">Save</button>
+        <input value={title} onChange={(event) => setTitle(event.target.value)} placeholder="Title" className="rounded-xl border border-white/15 bg-black px-4 py-3 text-white focus:border-lime-400 focus:outline-none" />
+        <input value={body} onChange={(event) => setBody(event.target.value)} placeholder="Quick note" className="rounded-xl border border-white/15 bg-black px-4 py-3 text-white focus:border-lime-400 focus:outline-none" />
+        <button type="submit" className="rounded-xl bg-lime-400 px-4 py-3 font-semibold text-black hover:bg-lime-300">Save</button>
       </form>
       <div className="mt-5 grid gap-3 md:grid-cols-2">
-        {notes.length === 0 ? <p className="text-sm text-slate-400">No notes stored yet.</p> : null}
+        {notes.length === 0 ? <p className="text-sm text-white/60">No notes stored yet.</p> : null}
         {notes.map((note) => (
-          <article key={note.id} className="rounded-xl border border-slate-800 bg-slate-950/70 p-4">
+          <article key={note.id} className="rounded-xl border border-white/15 bg-white/5 p-4">
             <div className="flex items-start justify-between gap-3">
               <div>
                 <h3 className="font-semibold text-white">{note.title}</h3>
-                <p className="mt-2 text-sm text-slate-300">{note.body}</p>
+                <p className="mt-2 text-sm text-white/80">{note.body}</p>
               </div>
-              <button type="button" onClick={() => setNotes((current) => current.filter((currentNote) => currentNote.id !== note.id))} className="text-sm text-red-300 hover:text-red-200">Delete</button>
+              <button type="button" onClick={() => setNotes((current) => current.filter((currentNote) => currentNote.id !== note.id))} className="text-sm text-lime-300 hover:text-lime-300">Delete</button>
             </div>
           </article>
         ))}
@@ -222,7 +222,7 @@ export function BookmarksDemo() {
 
   return (
     <SectionCard title="Bookmarks" description="URLs are validated before they are saved locally.">
-      {!hydrated ? <p className="text-sm text-slate-400">Loading bookmarks…</p> : null}
+      {!hydrated ? <p className="text-sm text-white/60">Loading bookmarks…</p> : null}
       <form
         className="grid gap-3 md:grid-cols-[1fr_2fr_auto]"
         onSubmit={(event) => {
@@ -238,20 +238,20 @@ export function BookmarksDemo() {
           }
         }}
       >
-        <input value={label} onChange={(event) => setLabel(event.target.value)} placeholder="Label" className="rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white focus:border-red-400 focus:outline-none" />
-        <input value={url} onChange={(event) => setUrl(event.target.value)} placeholder="example.com" className="rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white focus:border-red-400 focus:outline-none" />
-        <button type="submit" className="rounded-xl bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-500">Save</button>
+        <input value={label} onChange={(event) => setLabel(event.target.value)} placeholder="Label" className="rounded-xl border border-white/15 bg-black px-4 py-3 text-white focus:border-lime-400 focus:outline-none" />
+        <input value={url} onChange={(event) => setUrl(event.target.value)} placeholder="example.com" className="rounded-xl border border-white/15 bg-black px-4 py-3 text-white focus:border-lime-400 focus:outline-none" />
+        <button type="submit" className="rounded-xl bg-lime-400 px-4 py-3 font-semibold text-black hover:bg-lime-300">Save</button>
       </form>
-      {error ? <p className="mt-3 text-sm text-red-300">{error}</p> : null}
+      {error ? <p className="mt-3 text-sm text-lime-300">{error}</p> : null}
       <div className="mt-5 space-y-3">
-        {bookmarks.length === 0 ? <p className="text-sm text-slate-400">No bookmarks yet.</p> : null}
+        {bookmarks.length === 0 ? <p className="text-sm text-white/60">No bookmarks yet.</p> : null}
         {bookmarks.map((bookmark) => (
-          <div key={bookmark.id} className="flex flex-col gap-3 rounded-xl border border-slate-800 bg-slate-950/70 px-4 py-3 md:flex-row md:items-center md:justify-between">
+          <div key={bookmark.id} className="flex flex-col gap-3 rounded-xl border border-white/15 bg-white/5 px-4 py-3 md:flex-row md:items-center md:justify-between">
             <div>
               <p className="font-semibold text-white">{bookmark.label}</p>
-              <a href={bookmark.url} target="_blank" rel="noreferrer" className="text-sm text-red-300 hover:text-red-200">{bookmark.url}</a>
+              <a href={bookmark.url} target="_blank" rel="noreferrer" className="text-sm text-lime-300 hover:text-lime-300">{bookmark.url}</a>
             </div>
-            <button type="button" onClick={() => setBookmarks((current) => current.filter((currentBookmark) => currentBookmark.id !== bookmark.id))} className="text-sm text-red-300 hover:text-red-200">Remove</button>
+            <button type="button" onClick={() => setBookmarks((current) => current.filter((currentBookmark) => currentBookmark.id !== bookmark.id))} className="text-sm text-lime-300 hover:text-lime-300">Remove</button>
           </div>
         ))}
       </div>
@@ -287,12 +287,12 @@ export function PomodoroDemo() {
     <SectionCard title="Pomodoro timer" description="A simple client-side focus timer. Closing the tab resets the countdown.">
       <div className="space-y-6 text-center">
         <div>
-          <p className="text-sm uppercase tracking-[0.2em] text-red-400">{timerState.mode}</p>
+          <p className="text-sm uppercase tracking-[0.2em] text-lime-400">{timerState.mode}</p>
           <p className="mt-3 text-6xl font-bold text-white">{minutes}:{seconds}</p>
         </div>
         <div className="flex flex-wrap justify-center gap-3">
-          <button type="button" onClick={() => setRunning((current) => !current)} className="rounded-xl bg-red-600 px-5 py-3 font-semibold text-white hover:bg-red-500">{running ? 'Pause' : 'Start'}</button>
-          <button type="button" onClick={() => { setRunning(false); setTimerState({ mode: 'Focus', secondsLeft: 25 * 60 }); }} className="rounded-xl border border-slate-700 px-5 py-3 font-semibold text-slate-200 hover:border-red-400 hover:text-red-300">Reset</button>
+          <button type="button" onClick={() => setRunning((current) => !current)} className="rounded-xl bg-lime-400 px-5 py-3 font-semibold text-black hover:bg-lime-300">{running ? 'Pause' : 'Start'}</button>
+          <button type="button" onClick={() => { setRunning(false); setTimerState({ mode: 'Focus', secondsLeft: 25 * 60 }); }} className="rounded-xl border border-white/15 px-5 py-3 font-semibold text-white hover:border-lime-400 hover:text-lime-300">Reset</button>
         </div>
       </div>
     </SectionCard>
@@ -314,7 +314,7 @@ export function ExpenseTrackerDemo() {
 
   return (
     <SectionCard title="Expense tracker" description="Local demo data only. No accounting export or backend sync is configured.">
-      {!hydrated ? <p className="text-sm text-slate-400">Loading expense history…</p> : null}
+      {!hydrated ? <p className="text-sm text-white/60">Loading expense history…</p> : null}
       <form
         className="grid gap-3 md:grid-cols-[2fr_1fr_1fr_auto]"
         onSubmit={(event) => {
@@ -326,36 +326,36 @@ export function ExpenseTrackerDemo() {
           setAmount('');
         }}
       >
-        <input value={label} onChange={(event) => setLabel(event.target.value)} placeholder="Expense label" className="rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white focus:border-red-400 focus:outline-none" />
-        <input value={amount} onChange={(event) => setAmount(event.target.value)} placeholder="0.00" inputMode="decimal" className="rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white focus:border-red-400 focus:outline-none" />
-        <select value={category} onChange={(event) => setCategory(event.target.value)} className="rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white focus:border-red-400 focus:outline-none">
+        <input value={label} onChange={(event) => setLabel(event.target.value)} placeholder="Expense label" className="rounded-xl border border-white/15 bg-black px-4 py-3 text-white focus:border-lime-400 focus:outline-none" />
+        <input value={amount} onChange={(event) => setAmount(event.target.value)} placeholder="0.00" inputMode="decimal" className="rounded-xl border border-white/15 bg-black px-4 py-3 text-white focus:border-lime-400 focus:outline-none" />
+        <select value={category} onChange={(event) => setCategory(event.target.value)} className="rounded-xl border border-white/15 bg-black px-4 py-3 text-white focus:border-lime-400 focus:outline-none">
           <option>Operations</option>
           <option>Marketing</option>
           <option>Software</option>
           <option>Travel</option>
         </select>
-        <button type="submit" className="rounded-xl bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-500">Add</button>
+        <button type="submit" className="rounded-xl bg-lime-400 px-4 py-3 font-semibold text-black hover:bg-lime-300">Add</button>
       </form>
       <div className="mt-6 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
         <div className="space-y-3">
-          {expenses.length === 0 ? <p className="text-sm text-slate-400">No expenses yet.</p> : null}
+          {expenses.length === 0 ? <p className="text-sm text-white/60">No expenses yet.</p> : null}
           {expenses.map((expense) => (
-            <div key={expense.id} className="flex items-center justify-between rounded-xl border border-slate-800 bg-slate-950/70 px-4 py-3 text-sm text-slate-200">
+            <div key={expense.id} className="flex items-center justify-between rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white">
               <div>
                 <p className="font-semibold text-white">{expense.label}</p>
-                <p className="text-slate-400">{expense.category}</p>
+                <p className="text-white/60">{expense.category}</p>
               </div>
               <div className="flex items-center gap-4">
                 <span>${expense.amount.toFixed(2)}</span>
-                <button type="button" onClick={() => setExpenses((current) => current.filter((currentExpense) => currentExpense.id !== expense.id))} className="text-red-300 hover:text-red-200">Remove</button>
+                <button type="button" onClick={() => setExpenses((current) => current.filter((currentExpense) => currentExpense.id !== expense.id))} className="text-lime-300 hover:text-lime-300">Remove</button>
               </div>
             </div>
           ))}
         </div>
-        <div className="rounded-xl border border-slate-800 bg-slate-950/70 p-4">
+        <div className="rounded-xl border border-white/15 bg-white/5 p-4">
           <h3 className="font-semibold text-white">Category totals</h3>
-          <div className="mt-4 space-y-2 text-sm text-slate-300">
-            {Object.entries(totals).length === 0 ? <p className="text-slate-400">No totals yet.</p> : null}
+          <div className="mt-4 space-y-2 text-sm text-white/80">
+            {Object.entries(totals).length === 0 ? <p className="text-white/60">No totals yet.</p> : null}
             {Object.entries(totals).map(([expenseCategory, total]) => (
               <div key={expenseCategory} className="flex items-center justify-between">
                 <span>{expenseCategory}</span>
@@ -427,31 +427,31 @@ export function WeatherDemo() {
             const nextLocation = locationOptions.find((option) => option.name === event.target.value);
             if (nextLocation) setLocation(nextLocation);
           }}
-          className="rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white focus:border-red-400 focus:outline-none"
+          className="rounded-xl border border-white/15 bg-black px-4 py-3 text-white focus:border-lime-400 focus:outline-none"
         >
           {locationOptions.map((option) => (
             <option key={option.name}>{option.name}</option>
           ))}
         </select>
-        <button type="button" onClick={() => void loadWeather()} disabled={loading} className="rounded-xl bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-500 disabled:cursor-not-allowed disabled:opacity-60">
+        <button type="button" onClick={() => void loadWeather()} disabled={loading} className="rounded-xl bg-lime-400 px-4 py-3 font-semibold text-black hover:bg-lime-300 disabled:cursor-not-allowed disabled:opacity-60">
           {loading ? 'Loading…' : 'Fetch weather'}
         </button>
       </div>
-      {error ? <p className="mt-4 rounded-xl border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-200">{error}</p> : null}
+      {error ? <p className="mt-4 rounded-xl border border-lime-400/30 bg-lime-400/10 p-3 text-sm text-lime-300">{error}</p> : null}
       {weather ? (
         <div className="mt-5 grid gap-4 sm:grid-cols-3">
-          <div className="rounded-xl border border-slate-800 bg-slate-950/70 p-4">
-            <p className="text-sm text-slate-400">Temperature</p>
+          <div className="rounded-xl border border-white/15 bg-white/5 p-4">
+            <p className="text-sm text-white/60">Temperature</p>
             <p className="mt-2 text-3xl font-semibold text-white">{weather.temperature}°C</p>
           </div>
-          <div className="rounded-xl border border-slate-800 bg-slate-950/70 p-4">
-            <p className="text-sm text-slate-400">Wind speed</p>
+          <div className="rounded-xl border border-white/15 bg-white/5 p-4">
+            <p className="text-sm text-white/60">Wind speed</p>
             <p className="mt-2 text-3xl font-semibold text-white">{weather.windspeed} km/h</p>
           </div>
-          <div className="rounded-xl border border-slate-800 bg-slate-950/70 p-4">
-            <p className="text-sm text-slate-400">Observed at</p>
+          <div className="rounded-xl border border-white/15 bg-white/5 p-4">
+            <p className="text-sm text-white/60">Observed at</p>
             <p className="mt-2 text-sm font-semibold text-white">{weather.time}</p>
-            <p className="mt-2 text-xs text-slate-500">Code: {weather.weathercode}</p>
+            <p className="mt-2 text-xs text-white/60">Code: {weather.weathercode}</p>
           </div>
         </div>
       ) : null}
@@ -503,10 +503,10 @@ export function CalculatorDemo() {
 
   return (
     <SectionCard title="Calculator" description="Run quick arithmetic with an on-page keypad and recent local history.">
-      {!hydrated ? <p className="text-sm text-slate-400">Loading saved calculations…</p> : null}
+      {!hydrated ? <p className="text-sm text-white/60">Loading saved calculations…</p> : null}
       <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
         <div className="space-y-4">
-          <input value={expression} onChange={(event) => setExpression(event.target.value)} placeholder="(12 + 4) / 2" className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white focus:border-red-400 focus:outline-none" />
+          <input value={expression} onChange={(event) => setExpression(event.target.value)} placeholder="(12 + 4) / 2" className="w-full rounded-xl border border-white/15 bg-black px-4 py-3 text-white focus:border-lime-400 focus:outline-none" />
           <div className="grid grid-cols-4 gap-3">
             {keypadRows.flat().map((token) => (
               <button
@@ -531,33 +531,33 @@ export function CalculatorDemo() {
 
                   appendToken(token);
                 }}
-                className={token === '=' ? 'rounded-xl bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-500' : 'rounded-xl border border-slate-700 px-4 py-3 font-semibold text-slate-200 hover:border-red-400 hover:text-red-300'}
+                className={token === '=' ? 'rounded-xl bg-lime-400 px-4 py-3 font-semibold text-black hover:bg-lime-300' : 'rounded-xl border border-white/15 px-4 py-3 font-semibold text-white hover:border-lime-400 hover:text-lime-300'}
               >
                 {token}
               </button>
             ))}
           </div>
           <div className="flex flex-wrap gap-3">
-            <button type="button" onClick={evaluateExpression} className="rounded-xl bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-500">Evaluate</button>
-            <button type="button" onClick={() => { setExpression(''); setResult(''); }} className="rounded-xl border border-slate-700 px-4 py-3 font-semibold text-slate-200 hover:border-red-400 hover:text-red-300">Clear</button>
-            <button type="button" onClick={() => setExpression('(12 + 4) / 2')} className="rounded-xl border border-slate-700 px-4 py-3 font-semibold text-slate-200 hover:border-red-400 hover:text-red-300">Try example</button>
+            <button type="button" onClick={evaluateExpression} className="rounded-xl bg-lime-400 px-4 py-3 font-semibold text-black hover:bg-lime-300">Evaluate</button>
+            <button type="button" onClick={() => { setExpression(''); setResult(''); }} className="rounded-xl border border-white/15 px-4 py-3 font-semibold text-white hover:border-lime-400 hover:text-lime-300">Clear</button>
+            <button type="button" onClick={() => setExpression('(12 + 4) / 2')} className="rounded-xl border border-white/15 px-4 py-3 font-semibold text-white hover:border-lime-400 hover:text-lime-300">Try example</button>
           </div>
-          <p className="rounded-xl border border-slate-800 bg-slate-950/70 p-4 text-slate-200">{result || 'Result will appear here.'}</p>
+          <p className="rounded-xl border border-white/15 bg-white/5 p-4 text-white">{result || 'Result will appear here.'}</p>
         </div>
-        <div className="rounded-2xl border border-slate-800 bg-slate-950/70 p-5">
+        <div className="rounded-2xl border border-white/15 bg-white/5 p-5">
           <div className="flex items-center justify-between gap-3">
             <h3 className="font-semibold text-white">Recent calculations</h3>
             <button
               type="button"
               onClick={() => setHistory([])}
               disabled={history.length === 0}
-              className="text-sm text-red-300 hover:text-red-200 disabled:cursor-not-allowed disabled:opacity-60"
+              className="text-sm text-lime-300 hover:text-lime-300 disabled:cursor-not-allowed disabled:opacity-60"
             >
               Clear history
             </button>
           </div>
           <div className="mt-4 space-y-3">
-            {history.length === 0 ? <p className="text-sm text-slate-400">Evaluate expressions to build a local history.</p> : null}
+            {history.length === 0 ? <p className="text-sm text-white/60">Evaluate expressions to build a local history.</p> : null}
             {history.map((item) => (
               <button
                 key={item.id}
@@ -566,9 +566,9 @@ export function CalculatorDemo() {
                   setExpression(item.expression);
                   setResult(item.result);
                 }}
-                className="block w-full rounded-xl border border-slate-800 bg-slate-900 px-4 py-3 text-left hover:border-red-400/50"
+                className="block w-full rounded-xl border border-white/15 bg-black px-4 py-3 text-left hover:border-lime-400/50"
               >
-                <p className="text-sm text-slate-300">{item.expression}</p>
+                <p className="text-sm text-white/80">{item.expression}</p>
                 <p className="mt-1 font-semibold text-white">= {item.result}</p>
               </button>
             ))}
@@ -614,14 +614,14 @@ export function JokeDemo() {
 
   return (
     <SectionCard title="Joke generator" description="Public API demo. If the service is unreachable, the page surfaces the network error instead of pretending to succeed.">
-      <button type="button" onClick={() => void fetchJoke()} disabled={loading} className="rounded-xl bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-500 disabled:cursor-not-allowed disabled:opacity-60">
+      <button type="button" onClick={() => void fetchJoke()} disabled={loading} className="rounded-xl bg-lime-400 px-4 py-3 font-semibold text-black hover:bg-lime-300 disabled:cursor-not-allowed disabled:opacity-60">
         {loading ? 'Loading…' : 'Fetch joke'}
       </button>
-      {error ? <p className="mt-4 rounded-xl border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-200">{error}</p> : null}
+      {error ? <p className="mt-4 rounded-xl border border-lime-400/30 bg-lime-400/10 p-3 text-sm text-lime-300">{error}</p> : null}
       {joke ? (
-        <div className="mt-5 rounded-xl border border-slate-800 bg-slate-950/70 p-5">
+        <div className="mt-5 rounded-xl border border-white/15 bg-white/5 p-5">
           <p className="text-lg font-semibold text-white">{joke.setup}</p>
-          <p className="mt-3 text-slate-300">{joke.punchline}</p>
+          <p className="mt-3 text-white/80">{joke.punchline}</p>
         </div>
       ) : null}
     </SectionCard>
@@ -650,20 +650,20 @@ export function PasswordGeneratorDemo() {
 
   return (
     <SectionCard title="Password generator" description="Generated locally in the browser. Previous passwords are only stored in localStorage after hydration.">
-      {!hydrated ? <p className="text-sm text-slate-400">Loading saved passwords…</p> : null}
+      {!hydrated ? <p className="text-sm text-white/60">Loading saved passwords…</p> : null}
       <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
         <div className="space-y-6">
-          <div className="rounded-xl border border-slate-800 bg-slate-950/70 p-4">
+          <div className="rounded-xl border border-white/15 bg-white/5 p-4">
             <p className="break-all font-mono text-lg text-white">{password || 'Generate a password to preview it here.'}</p>
           </div>
-          <label className="block text-sm font-medium text-slate-200">
-            Length: <span className="text-red-300">{length}</span>
-            <input type="range" min={8} max={32} value={length} onChange={(event) => setLength(Number(event.target.value))} className="mt-3 w-full accent-red-500" />
+          <label className="block text-sm font-medium text-white">
+            Length: <span className="text-lime-300">{length}</span>
+            <input type="range" min={8} max={32} value={length} onChange={(event) => setLength(Number(event.target.value))} className="mt-3 w-full accent-lime-400" />
           </label>
           <div className="grid gap-3 sm:grid-cols-2">
             {Object.entries(options).map(([key, value]) => (
-              <label key={key} className="flex items-center gap-3 rounded-xl border border-slate-800 bg-slate-950/70 px-4 py-3 text-sm text-slate-200">
-                <input type="checkbox" checked={value} onChange={(event) => setOptions((current) => ({ ...current, [key]: event.target.checked }))} className="h-4 w-4 accent-red-500" />
+              <label key={key} className="flex items-center gap-3 rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white">
+                <input type="checkbox" checked={value} onChange={(event) => setOptions((current) => ({ ...current, [key]: event.target.checked }))} className="h-4 w-4 accent-lime-400" />
                 <span className="capitalize">{key}</span>
               </label>
             ))}
@@ -681,41 +681,41 @@ export function PasswordGeneratorDemo() {
                   setError(creationError instanceof Error ? creationError.message : 'Unable to generate password.');
                 }
               }}
-              className="rounded-xl bg-red-600 px-5 py-3 font-semibold text-white hover:bg-red-500"
+              className="rounded-xl bg-lime-400 px-5 py-3 font-semibold text-black hover:bg-lime-300"
             >
               Generate password
             </button>
-            <button type="button" onClick={() => void copyToClipboard()} className="rounded-xl border border-slate-700 px-5 py-3 font-semibold text-slate-200 hover:border-red-400 hover:text-red-300">
+            <button type="button" onClick={() => void copyToClipboard()} className="rounded-xl border border-white/15 px-5 py-3 font-semibold text-white hover:border-lime-400 hover:text-lime-300">
               Copy
             </button>
           </div>
-          {error ? <p className={`text-sm ${error === 'Copied to clipboard.' ? 'text-emerald-300' : 'text-red-300'}`}>{error}</p> : null}
+          {error ? <p className={`text-sm ${error === 'Copied to clipboard.' ? 'text-lime-300' : 'text-lime-300'}`}>{error}</p> : null}
         </div>
         <div className="space-y-5">
           {analysis ? (
-            <div className="rounded-2xl border border-slate-800 bg-slate-950/70 p-5">
+            <div className="rounded-2xl border border-white/15 bg-white/5 p-5">
               <div className="flex items-center justify-between gap-4">
                 <h3 className="font-semibold text-white">Strength</h3>
                 <span className={`rounded-full px-3 py-1 text-sm font-semibold text-white ${getStrengthColor(analysis.strength)}`}>{analysis.strength}</span>
               </div>
-              <div className="mt-4 h-3 rounded-full bg-slate-800">
+              <div className="mt-4 h-3 rounded-full bg-white/10">
                 <div className={`h-3 rounded-full ${getStrengthColor(analysis.strength)}`} style={{ width: `${analysis.score}%` }} />
               </div>
-              <ul className="mt-4 space-y-2 text-sm text-slate-300">
+              <ul className="mt-4 space-y-2 text-sm text-white/80">
                 {analysis.feedback.map((item) => (
                   <li key={item}>• {item}</li>
                 ))}
               </ul>
             </div>
           ) : null}
-          <div className="rounded-2xl border border-slate-800 bg-slate-950/70 p-5">
+          <div className="rounded-2xl border border-white/15 bg-white/5 p-5">
             <h3 className="font-semibold text-white">Recent passwords</h3>
-            <div className="mt-4 space-y-3 text-sm text-slate-300">
-              {history.length === 0 ? <p className="text-slate-400">No locally stored passwords yet.</p> : null}
+            <div className="mt-4 space-y-3 text-sm text-white/80">
+              {history.length === 0 ? <p className="text-white/60">No locally stored passwords yet.</p> : null}
               {history.map((item, index) => (
-                <div key={`${item}-${index}`} className="flex items-center justify-between gap-3 rounded-xl border border-slate-800 px-3 py-2">
+                <div key={`${item}-${index}`} className="flex items-center justify-between gap-3 rounded-xl border border-white/15 px-3 py-2">
                   <span className="truncate font-mono">{item}</span>
-                  <button type="button" onClick={() => setHistory((current) => current.filter((_, currentIndex) => currentIndex !== index))} className="text-red-300 hover:text-red-200">Delete</button>
+                  <button type="button" onClick={() => setHistory((current) => current.filter((_, currentIndex) => currentIndex !== index))} className="text-lime-300 hover:text-lime-300">Delete</button>
                 </div>
               ))}
             </div>
@@ -728,13 +728,13 @@ export function PasswordGeneratorDemo() {
 
 export function DemoDisclosure() {
   return (
-    <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 text-sm text-slate-300">
+    <div className="rounded-2xl border border-white/15 bg-white/5 p-5 text-sm text-white/80">
       <p>
         This repository currently provides a polished frontend demo. Browser-only tools persist locally when noted, but no authentication, payments,
         or backend submission pipeline is configured here.
       </p>
       <p className="mt-3">
-        Need a production rollout plan? Visit <Link href="/contact" className="text-red-300 hover:text-red-200">Contact</Link> to prepare a consultation request.
+        Need a production rollout plan? Visit <Link href="/contact" className="text-lime-300 hover:text-lime-300">Contact</Link> to prepare a consultation request.
       </p>
     </div>
   );

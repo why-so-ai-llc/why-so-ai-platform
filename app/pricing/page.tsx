@@ -33,39 +33,39 @@ export default function PricingPage() {
         <h2 className="text-3xl font-bold text-white">Platform subscription</h2>
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
           {Object.values(subscriptionPlans).map((p) => (
-            <button key={p.id} type="button" onClick={() => setPlan(p.id)} aria-pressed={plan === p.id} className={`rounded-2xl border p-6 text-left ${plan === p.id ? 'border-red-400 bg-red-500/10' : 'border-slate-800 bg-slate-900/80 hover:border-slate-600'}`}>
-              <p className="text-sm uppercase tracking-[0.2em] text-red-300">{p.name}{p.id === 'annual' ? ` · Save ${annualSavingsPercent()}%` : ''}</p>
-              <p className="mt-3 text-4xl font-bold text-white">{formatPrice(p.amountCents)}<span className="text-base font-normal text-slate-400"> / {p.interval}</span></p>
-              <p className="mt-2 text-sm text-slate-300">{p.description}</p>
-              <ul className="mt-3 space-y-1 text-sm text-slate-300">{p.features.map((f) => <li key={f}>✓ {f}</li>)}</ul>
+            <button key={p.id} type="button" onClick={() => setPlan(p.id)} aria-pressed={plan === p.id} className={`rounded-2xl border p-6 text-left ${plan === p.id ? 'border-lime-400 bg-lime-400/10' : 'border-white/15 bg-white/5 hover:border-white/30'}`}>
+              <p className="text-sm uppercase tracking-[0.2em] text-lime-300">{p.name}{p.id === 'annual' ? ` · Save ${annualSavingsPercent()}%` : ''}</p>
+              <p className="mt-3 text-4xl font-bold text-white">{formatPrice(p.amountCents)}<span className="text-base font-normal text-white/60"> / {p.interval}</span></p>
+              <p className="mt-2 text-sm text-white/80">{p.description}</p>
+              <ul className="mt-3 space-y-1 text-sm text-white/80">{p.features.map((f) => <li key={f}>✓ {f}</li>)}</ul>
             </button>
           ))}
         </div>
-        <div className="mt-6 space-y-4 rounded-2xl border border-slate-800 bg-slate-900/80 p-6 sm:p-8">
+        <div className="mt-6 space-y-4 rounded-2xl border border-white/15 bg-white/5 p-6 sm:p-8">
           <PaymentMethodSelector value={method} onChange={setMethod} />
           {method === 'card' ? <StripeCheckout plan={plan} /> : <VenmoPayment plan={plan} />}
         </div>
       </div>
       <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid gap-8 rounded-2xl border border-slate-800 bg-slate-900/80 p-8 lg:grid-cols-[1fr_0.9fr]">
+        <div className="grid gap-8 rounded-2xl border border-white/15 bg-white/5 p-8 lg:grid-cols-[1fr_0.9fr]">
           <div className="space-y-5">
-            <label className="block text-sm font-medium text-slate-200">
+            <label className="block text-sm font-medium text-white">
               Engagement type
-              <select value={engagement} onChange={(event) => setEngagement(event.target.value as 'discovery' | 'integration' | 'automation')} className="mt-2 w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white focus:border-red-400 focus:outline-none">
+              <select value={engagement} onChange={(event) => setEngagement(event.target.value as 'discovery' | 'integration' | 'automation')} className="mt-2 w-full rounded-xl border border-white/15 bg-black px-4 py-3 text-white focus:border-lime-400 focus:outline-none">
                 <option value="discovery">Discovery sprint</option>
                 <option value="integration">Custom AI integration</option>
                 <option value="automation">Workflow automation</option>
               </select>
             </label>
-            <label className="block text-sm font-medium text-slate-200">
-              Delivery complexity: <span className="text-red-300">{complexity}x</span>
-              <input type="range" min={1} max={4} value={complexity} onChange={(event) => setComplexity(Number(event.target.value))} className="mt-3 w-full accent-red-500" />
+            <label className="block text-sm font-medium text-white">
+              Delivery complexity: <span className="text-lime-300">{complexity}x</span>
+              <input type="range" min={1} max={4} value={complexity} onChange={(event) => setComplexity(Number(event.target.value))} className="mt-3 w-full accent-lime-400" />
             </label>
           </div>
-          <div className="rounded-2xl border border-red-500/20 bg-red-500/10 p-6">
-            <p className="text-sm uppercase tracking-[0.2em] text-red-300">Directional estimate</p>
+          <div className="rounded-2xl border border-lime-400/20 bg-lime-400/10 p-6">
+            <p className="text-sm uppercase tracking-[0.2em] text-lime-300">Directional estimate</p>
             <p className="mt-4 text-4xl font-bold text-white">${estimate.toLocaleString()}</p>
-            <p className="mt-3 text-sm text-slate-300">
+            <p className="mt-3 text-sm text-white/80">
               Use this as a planning number only. Final scope depends on systems, data access, review cycles, and deployment requirements.
             </p>
           </div>

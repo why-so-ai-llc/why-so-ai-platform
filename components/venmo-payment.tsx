@@ -11,13 +11,13 @@ export function VenmoPayment({ plan }: { plan: PlanId }) {
 
   return (
     <div className="space-y-4">
-      <p className="text-slate-200">
+      <p className="text-white">
         Pay <span className="font-semibold text-white">{formatPrice(selected.amountCents)}</span> to <span className="font-semibold text-white">@{venmoUsername}</span> and include &ldquo;{note}&rdquo; in the memo.
       </p>
       <div className="inline-block rounded-xl bg-white p-3">
         <QRCodeSVG value={url} size={160} />
       </div>
-      <a href={url} target="_blank" rel="noopener noreferrer" className="block rounded-xl bg-sky-500 px-4 py-3 text-center font-semibold text-white hover:bg-sky-400">
+      <a href={url} target="_blank" rel="noopener noreferrer" className="block rounded-xl bg-lime-400 px-4 py-3 text-center font-semibold text-black hover:bg-lime-300">
         Pay with Venmo
       </a>
     </div>
