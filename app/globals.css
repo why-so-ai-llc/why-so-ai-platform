@@ -11,9 +11,9 @@ html {
 }
 
 body {
-  --font-body: var(--font-lordish), 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  --font-display: var(--font-lordish), 'Trebuchet MS', Arial, sans-serif;
-  --font-accent: var(--font-vampire-wars), 'Times New Roman', serif;
+  --font-body: var(--font-inter), 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-space-grotesk), var(--font-inter), system-ui, sans-serif;
+  --font-accent: var(--font-space-grotesk), var(--font-inter), system-ui, sans-serif;
   background-image:
     linear-gradient(to bottom right, rgb(2 6 23 / 0.9), rgb(15 23 42 / 0.85), rgb(2 6 23 / 0.9)),
     url('/Screenshot_20260924-164902_Gemini.png');
@@ -49,7 +49,7 @@ dt {
 
 .font-accent {
   font-family: var(--font-accent);
-  font-style: italic;
+  letter-spacing: 0.02em;
 }
 
 .scan-line {
