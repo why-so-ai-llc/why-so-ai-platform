@@ -9,10 +9,10 @@ const stripePromise = publishableKey ? loadStripe(publishableKey) : null;
 
 export function StripeProvider({ clientSecret, children }: { clientSecret: string; children: ReactNode }) {
   if (!stripePromise) {
-    return <p className="text-sm text-red-300">Card payments are not configured.</p>;
+    return <p className="text-sm text-lime-300">Card payments are not configured.</p>;
   }
   return (
-    <Elements stripe={stripePromise} options={{ clientSecret, appearance: { theme: 'night' } }}>
+    <Elements stripe={stripePromise} options={{ clientSecret, appearance: { theme: 'night', variables: { colorPrimary: '#a3e635', colorBackground: '#000000', colorText: '#ffffff' } } }}>
       {children}
     </Elements>
   );

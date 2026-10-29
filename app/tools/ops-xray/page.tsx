@@ -160,10 +160,10 @@ export default function OpsXRayPage() {
   const totalSavings = results?.reduce((total, item) => total + item.savings, 0) ?? 0;
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-white selection:bg-violet-500/30">
+    <div className="min-h-screen bg-black text-white selection:bg-lime-400/30">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
         <div className="mx-auto mb-12 max-w-3xl text-center">
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-violet-400/20 bg-violet-400/10 px-3 py-1.5 text-xs font-medium uppercase tracking-[0.16em] text-violet-200">
+          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-lime-400/20 bg-lime-400/10 px-3 py-1.5 text-xs font-medium uppercase tracking-[0.16em] text-lime-300">
             <ScanLine aria-hidden="true" size={14} />
             Business automation audit
           </div>
@@ -180,10 +180,10 @@ export default function OpsXRayPage() {
         <div className="grid items-start gap-6 lg:grid-cols-[0.9fr_1.1fr]">
           <form
             onSubmit={analyze}
-            className="no-print rounded-3xl border border-white/10 bg-white/[0.035] p-5 shadow-2xl shadow-violet-950/20 backdrop-blur-xl sm:p-7"
+            className="no-print rounded-3xl border border-white/10 bg-white/[0.035] p-5 shadow-2xl shadow-lime-400/20 backdrop-blur-xl sm:p-7"
           >
             <div className="mb-7 flex items-center gap-3">
-              <div className="rounded-xl border border-violet-300/15 bg-violet-400/10 p-2.5 text-violet-200">
+              <div className="rounded-xl border border-lime-400/15 bg-lime-400/10 p-2.5 text-lime-300">
                 <Workflow aria-hidden="true" size={19} />
               </div>
               <div>
@@ -204,7 +204,7 @@ export default function OpsXRayPage() {
                   value={url}
                   onChange={(event) => setUrl(event.target.value)}
                   placeholder="https://yourbusiness.com"
-                  className="w-full rounded-xl border border-white/10 bg-black/30 py-3 pl-10 pr-4 text-sm outline-none transition placeholder:text-white/30 focus:border-violet-400/60 focus:ring-2 focus:ring-violet-400/15"
+                  className="w-full rounded-xl border border-white/10 bg-black/30 py-3 pl-10 pr-4 text-sm outline-none transition placeholder:text-white/30 focus:border-lime-400/60 focus:ring-2 focus:ring-lime-400/15"
                 />
               </div>
             </div>
@@ -215,7 +215,7 @@ export default function OpsXRayPage() {
               </label>
               <label
                 htmlFor="sop-upload"
-                className="mt-2 flex cursor-pointer items-center gap-4 rounded-xl border border-dashed border-white/15 bg-black/20 px-4 py-4 transition hover:border-violet-300/40 hover:bg-white/[0.03]"
+                className="mt-2 flex cursor-pointer items-center gap-4 rounded-xl border border-dashed border-white/15 bg-black/20 px-4 py-4 transition hover:border-lime-400/40 hover:bg-white/[0.03]"
               >
                 <span className="rounded-lg bg-white/[0.06] p-2.5 text-white/60">
                   <Upload aria-hidden="true" size={18} />
@@ -226,7 +226,7 @@ export default function OpsXRayPage() {
                   </span>
                   <span className="mt-1 block text-xs text-white/40">Filename only · Maximum 10 MB</span>
                 </span>
-                {fileName && <Check aria-label="File selected" size={17} className="text-emerald-400" />}
+                {fileName && <Check aria-label="File selected" size={17} className="text-lime-400" />}
                 <input
                   id="sop-upload"
                   type="file"
@@ -247,7 +247,7 @@ export default function OpsXRayPage() {
                 onChange={(event) => setPain(event.target.value)}
                 placeholder="ex: manually copying leads from our contact form into a spreadsheet..."
                 rows={4}
-                className="mt-2 w-full resize-y rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm leading-6 outline-none transition placeholder:text-white/30 focus:border-violet-400/60 focus:ring-2 focus:ring-violet-400/15"
+                className="mt-2 w-full resize-y rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm leading-6 outline-none transition placeholder:text-white/30 focus:border-lime-400/60 focus:ring-2 focus:ring-lime-400/15"
               />
             </div>
 
@@ -261,7 +261,7 @@ export default function OpsXRayPage() {
             <button
               type="submit"
               disabled={loading}
-              className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-violet-600 px-5 py-3.5 text-sm font-semibold transition hover:bg-violet-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-300 disabled:cursor-wait disabled:opacity-70"
+              className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-lime-400 px-5 py-3.5 text-sm font-semibold transition hover:bg-lime-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-300 disabled:cursor-wait disabled:opacity-70"
             >
               {loading ? 'Running your X-Ray…' : 'Run My X-Ray'}
               {!loading && <ArrowRight aria-hidden="true" size={17} />}
@@ -269,7 +269,7 @@ export default function OpsXRayPage() {
 
             {loading && (
               <div className="relative mt-5 overflow-hidden rounded-xl border border-white/10 bg-black/25 p-4">
-                <div className="scan-line pointer-events-none absolute inset-x-0 top-0 h-px bg-rose-400 shadow-[0_0_12px_3px_rgba(251,113,133,0.45)]" />
+                <div className="scan-line pointer-events-none absolute inset-x-0 top-0 h-px bg-lime-400 shadow-[0_0_12px_3px_rgba(163,230,53,0.45)]" />
                 <div className="flex items-center justify-between text-xs text-white/55">
                   <span>Scanning process patterns</span>
                   <span aria-live="polite">{Math.round(progress)}%</span>
@@ -283,7 +283,7 @@ export default function OpsXRayPage() {
                   className="mt-3 h-1.5 overflow-hidden rounded-full bg-white/10"
                 >
                   <div
-                    className="h-full rounded-full bg-violet-400 transition-[width] duration-100"
+                    className="h-full rounded-full bg-lime-400 transition-[width] duration-100"
                     style={{ width: `${progress}%` }}
                   />
                 </div>
@@ -336,17 +336,17 @@ export default function OpsXRayPage() {
 
             {results && (
               <>
-                <div className="print-document rounded-3xl border border-violet-300/15 bg-gradient-to-br from-violet-500/[0.14] to-white/[0.025] p-6 sm:p-7">
-                  <div className="print-only hidden text-sm font-semibold uppercase tracking-[0.22em] text-violet-700">
+                <div className="print-document rounded-3xl border border-lime-400/15 bg-gradient-to-br from-lime-400/[0.14] to-white/[0.025] p-6 sm:p-7">
+                  <div className="print-only hidden text-sm font-semibold uppercase tracking-[0.22em] text-lime-400">
                     Why So AI · Automation Blueprint
                   </div>
-                  <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.16em] text-violet-200">
+                  <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.16em] text-lime-300">
                     <Zap aria-hidden="true" size={15} />
                     Your automation opportunity
                   </div>
                   <p className="mt-4 text-2xl font-semibold leading-tight sm:text-3xl">
-                    You could save <span className="text-emerald-300">{totalHours} hours</span> /{' '}
-                    <span className="text-emerald-300">${totalSavings.toLocaleString()}</span> per month
+                    You could save <span className="text-lime-300">{totalHours} hours</span> /{' '}
+                    <span className="text-lime-300">${totalSavings.toLocaleString()}</span> per month
                   </p>
                   <p className="mt-2 text-sm text-white/50">
                     {results.length} opportunities identified · Estimates based on the information provided
@@ -355,7 +355,7 @@ export default function OpsXRayPage() {
 
                 <div className="rounded-3xl border border-white/10 bg-white/[0.025] p-5 sm:p-6">
                   <div className="flex items-center gap-2 text-sm font-semibold">
-                    <Workflow aria-hidden="true" size={17} className="text-violet-200" />
+                    <Workflow aria-hidden="true" size={17} className="text-lime-300" />
                     Workflow map
                   </div>
                   <div className="mt-5 grid gap-2 sm:grid-cols-5 sm:items-center">
@@ -364,9 +364,9 @@ export default function OpsXRayPage() {
                         <div
                           className={`min-w-0 flex-1 rounded-xl border p-3 ${
                             index === 2
-                              ? 'border-violet-300/20 bg-violet-400/10'
+                              ? 'border-lime-400/20 bg-lime-400/10'
                               : index === 4
-                                ? 'border-emerald-300/20 bg-emerald-400/[0.06]'
+                                ? 'border-lime-400/20 bg-lime-400/[0.06]'
                                 : 'border-white/[0.08] bg-black/20'
                           }`}
                         >
@@ -397,15 +397,15 @@ export default function OpsXRayPage() {
                           <div>
                             <h3 className="text-sm font-semibold">{item.task}</h3>
                             <p className="mt-1.5 text-xs text-white/45">
-                              AI replacement: <span className="text-violet-200">{item.replacement}</span>
+                              AI replacement: <span className="text-lime-300">{item.replacement}</span>
                             </p>
                           </div>
                         </div>
-                        <span className="rounded-full border border-emerald-300/15 bg-emerald-300/[0.08] px-3 py-1 text-xs font-medium text-emerald-200">
+                        <span className="rounded-full border border-lime-400/15 bg-lime-400/[0.08] px-3 py-1 text-xs font-medium text-lime-300">
                           ${item.savings.toLocaleString()} / month
                         </span>
                       </div>
-                      <div className="mt-4 inline-flex items-center gap-1.5 rounded-lg bg-rose-300/[0.07] px-2.5 py-1.5 text-xs text-rose-200">
+                      <div className="mt-4 inline-flex items-center gap-1.5 rounded-lg bg-lime-400/10 px-2.5 py-1.5 text-xs text-lime-300">
                         <Clock3 aria-hidden="true" size={13} />
                         {item.hours} hours wasted / week
                       </div>
@@ -416,7 +416,7 @@ export default function OpsXRayPage() {
                 <button
                   type="button"
                   onClick={() => window.print()}
-                  className="no-print inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.06] px-5 py-3.5 text-sm font-semibold transition hover:border-violet-300/40 hover:bg-violet-400/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-300"
+                  className="no-print inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.06] px-5 py-3.5 text-sm font-semibold transition hover:border-lime-400/40 hover:bg-lime-400/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-300"
                 >
                   <FileText aria-hidden="true" size={17} />
                   Generate My Automation Blueprint PDF

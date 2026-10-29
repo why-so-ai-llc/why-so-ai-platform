@@ -29,8 +29,8 @@ function CheckoutForm({ plan }: { plan: PlanId }) {
   return (
     <form onSubmit={onSubmit} className="space-y-4">
       <PaymentElement />
-      {error ? <p role="alert" className="text-sm text-red-300">{error}</p> : null}
-      <button type="submit" disabled={!stripe || submitting} className="w-full rounded-xl bg-red-500 px-4 py-3 font-semibold text-white hover:bg-red-400 disabled:opacity-50">
+      {error ? <p role="alert" className="text-sm text-lime-300">{error}</p> : null}
+      <button type="submit" disabled={!stripe || submitting} className="w-full rounded-xl bg-lime-400 px-4 py-3 font-semibold text-black hover:bg-lime-300 disabled:opacity-50">
         {submitting ? 'Processing…' : `Pay ${formatPrice(selected.amountCents)} / ${selected.interval}`}
       </button>
     </form>
@@ -64,18 +64,18 @@ function CheckoutInner({ plan }: { plan: PlanId }) {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between rounded-xl border border-slate-700 bg-slate-950 px-4 py-3">
-        <span className="text-slate-200">{selected.name} plan</span>
+      <div className="flex items-center justify-between rounded-xl border border-white/15 bg-black px-4 py-3">
+        <span className="text-white">{selected.name} plan</span>
         <span className="font-semibold text-white">{formatPrice(selected.amountCents)} / {selected.interval}</span>
       </div>
-      <p className="text-xs text-slate-400">We accept Visa, Mastercard, American Express, and Discover. Card details are handled securely by Stripe.</p>
-      {error ? <p role="alert" className="text-sm text-red-300">{error}</p> : null}
+      <p className="text-xs text-white/60">We accept Visa, Mastercard, American Express, and Discover. Card details are handled securely by Stripe.</p>
+      {error ? <p role="alert" className="text-sm text-lime-300">{error}</p> : null}
       {clientSecret ? (
         <StripeProvider clientSecret={clientSecret}>
           <CheckoutForm plan={plan} />
         </StripeProvider>
       ) : error ? null : (
-        <p className="text-sm text-slate-400">Loading secure payment form…</p>
+        <p className="text-sm text-white/60">Loading secure payment form…</p>
       )}
     </div>
   );

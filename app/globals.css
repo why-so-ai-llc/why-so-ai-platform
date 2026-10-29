@@ -11,26 +11,13 @@ html {
 }
 
 body {
-  --font-body: var(--font-lordish), 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  --font-display: var(--font-lordish), 'Trebuchet MS', Arial, sans-serif;
-  --font-accent: var(--font-vampire-wars), 'Times New Roman', serif;
-  background-image:
-    linear-gradient(to bottom right, rgb(2 6 23 / 0.9), rgb(15 23 42 / 0.85), rgb(2 6 23 / 0.9)),
-    url('/Screenshot_20260924-164902_Gemini.png');
-  background-repeat: no-repeat;
-  background-color: #020617;
-  background-position: center;
-  background-size: cover;
-  background-attachment: fixed;
+  --font-body: var(--font-inter), 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-space-grotesk), var(--font-inter), system-ui, sans-serif;
+  --font-accent: var(--font-space-grotesk), var(--font-inter), system-ui, sans-serif;
+  background-color: #000;
   font-family: var(--font-body);
   font-synthesis: none;
-  @apply text-slate-100 antialiased;
-}
-
-@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
-  body {
-    background-attachment: scroll;
-  }
+  @apply text-white antialiased;
 }
 
 h1,
@@ -49,7 +36,7 @@ dt {
 
 .font-accent {
   font-family: var(--font-accent);
-  font-style: italic;
+  letter-spacing: 0.02em;
 }
 
 .scan-line {
@@ -78,7 +65,7 @@ a {
 }
 
 ::selection {
-  @apply bg-red-500/50 text-white;
+  @apply bg-lime-400 text-black;
 }
 
 @media print {

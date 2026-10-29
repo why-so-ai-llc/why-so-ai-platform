@@ -1,5 +1,5 @@
-import type { Metadata } from 'next';
-import localFont from 'next/font/local';
+import type { Metadata, Viewport } from 'next';
+import { Inter, Space_Grotesk } from 'next/font/google';
 import type { ReactNode } from 'react';
 import './globals.css';
 
@@ -7,19 +7,15 @@ import { Analytics } from '@vercel/analytics/next';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
 
-const lordish = localFont({
-  src: '../public/Lordish-Regular.ttf',
-  variable: '--font-lordish',
-  weight: '400',
-  style: 'normal',
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
   display: 'swap',
 });
 
-const vampireWars = localFont({
-  src: '../public/Vampire Wars Italic.ttf',
-  variable: '--font-vampire-wars',
-  weight: '400',
-  style: 'italic',
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-space-grotesk',
   display: 'swap',
 });
 
@@ -28,11 +24,17 @@ export const metadata: Metadata = {
   description: 'Why So AI showcases AI consulting, automation services, and browser-based demo tools.',
 };
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#000000',
+};
+
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en">
       <body
-        className={`${lordish.variable} ${vampireWars.variable} min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-slate-100`}
+        className={`${inter.variable} ${spaceGrotesk.variable} min-h-screen bg-black text-white`}
       >
         <div className="flex min-h-screen flex-col">
           <SiteHeader />
