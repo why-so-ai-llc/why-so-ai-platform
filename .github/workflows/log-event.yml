@@ -1,0 +1,13 @@
+name: Log PR Event
+
+on:
+  pull_request:
+
+jobs:
+  log-event:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log event type
+        run: |
+          echo "Event: ${{ github.event_name }}"
+          echo "Action: ${{ github.event.action }}"
