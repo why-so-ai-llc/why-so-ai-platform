@@ -261,7 +261,7 @@ export default function OpsXRayPage() {
             <button
               type="submit"
               disabled={loading}
-              className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-lime-400 px-5 py-3.5 text-sm font-semibold transition hover:bg-lime-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-300 disabled:cursor-wait disabled:opacity-70"
+              className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-lime-400 px-5 py-3.5 text-sm font-semibold transition hover:bg-lime-300 hover:shadow-neon focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-400 disabled:cursor-wait disabled:opacity-70"
             >
               {loading ? 'Running your X-Ray…' : 'Run My X-Ray'}
               {!loading && <ArrowRight aria-hidden="true" size={17} />}
@@ -416,7 +416,7 @@ export default function OpsXRayPage() {
                 <button
                   type="button"
                   onClick={() => window.print()}
-                  className="no-print inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.06] px-5 py-3.5 text-sm font-semibold transition hover:border-lime-400/40 hover:bg-lime-400/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-300"
+                  className="no-print inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.06] px-5 py-3.5 text-sm font-semibold transition hover:border-lime-400/40 hover:bg-lime-400/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-400"
                 >
                   <FileText aria-hidden="true" size={17} />
                   Generate My Automation Blueprint PDF

@@ -33,7 +33,7 @@ export default function PricingPage() {
         <h2 className="text-3xl font-bold text-white">Platform subscription</h2>
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
           {Object.values(subscriptionPlans).map((p) => (
-            <button key={p.id} type="button" onClick={() => setPlan(p.id)} aria-pressed={plan === p.id} className={`rounded-2xl border p-6 text-left ${plan === p.id ? 'border-lime-400 bg-lime-400/10' : 'border-white/15 bg-white/5 hover:border-white/30'}`}>
+            <button key={p.id} type="button" onClick={() => setPlan(p.id)} aria-pressed={plan === p.id} className={`rounded-2xl border p-6 text-left ${plan === p.id ? 'border-lime-400 bg-lime-400/10' : 'border-lime-400/15 bg-brand-surface hover:border-white/30'}`}>
               <p className="text-sm uppercase tracking-[0.2em] text-lime-300">{p.name}{p.id === 'annual' ? ` · Save ${annualSavingsPercent()}%` : ''}</p>
               <p className="mt-3 text-4xl font-bold text-white">{formatPrice(p.amountCents)}<span className="text-base font-normal text-white/60"> / {p.interval}</span></p>
               <p className="mt-2 text-sm text-white/80">{p.description}</p>
@@ -41,13 +41,13 @@ export default function PricingPage() {
             </button>
           ))}
         </div>
-        <div className="mt-6 space-y-4 rounded-2xl border border-white/15 bg-white/5 p-6 sm:p-8">
+        <div className="mt-6 space-y-4 rounded-2xl border border-lime-400/15 bg-brand-surface p-6 sm:p-8">
           <PaymentMethodSelector value={method} onChange={setMethod} />
           {method === 'card' ? <StripeCheckout plan={plan} /> : <VenmoPayment plan={plan} />}
         </div>
       </div>
       <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid gap-8 rounded-2xl border border-white/15 bg-white/5 p-8 lg:grid-cols-[1fr_0.9fr]">
+        <div className="grid gap-8 rounded-2xl border border-lime-400/15 bg-brand-surface p-8 lg:grid-cols-[1fr_0.9fr]">
           <div className="space-y-5">
             <label className="block text-sm font-medium text-white">
               Engagement type

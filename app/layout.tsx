@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter, Space_Grotesk } from 'next/font/google';
+import { Inter, Orbitron, Space_Grotesk } from 'next/font/google';
 import type { ReactNode } from 'react';
 import './globals.css';
 
@@ -19,22 +19,28 @@ const spaceGrotesk = Space_Grotesk({
   display: 'swap',
 });
 
+const orbitron = Orbitron({
+  subsets: ['latin'],
+  variable: '--font-orbitron',
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
-  title: 'Why So AI',
+  title: 'WHYSO AI LLC',
   description: 'Why So AI showcases AI consulting, automation services, and browser-based demo tools.',
 };
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#000000',
+  themeColor: '#050505',
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} min-h-screen bg-black text-white`}
+        className={`${inter.variable} ${spaceGrotesk.variable} ${orbitron.variable} min-h-screen bg-brand-bg text-brand-text`}
       >
         <div className="flex min-h-screen flex-col">
           <SiteHeader />
