@@ -33,6 +33,7 @@ export const navItems = [
   { label: 'Case Studies', href: '/case-studies' },
   { label: 'Blog', href: '/blog' },
   { label: 'Tools', href: '/tools' },
+  { label: 'Meet the Team', href: '/team' },
   { label: 'Contact', href: '/contact' },
 ] as const;
 
@@ -203,6 +204,7 @@ export const businessRoutes = [
   '/dashboard',
   '/documentation',
   '/tools',
+  '/team',
 ] as const;
 
 export const serviceRoutes = services.map((service) => `/services/${service.slug}`);

@@ -13,7 +13,7 @@ export default function ServicesPage() {
       />
       <div className="mx-auto grid max-w-6xl gap-6 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:px-8">
         {services.map((service) => (
-          <article key={service.slug} className="rounded-2xl border border-white/15 bg-white/5 p-6">
+          <article key={service.slug} className="rounded-2xl border border-lime-400/15 bg-brand-surface p-6">
             <p className="text-4xl">{service.icon}</p>
             <h2 className="mt-4 text-2xl font-semibold text-white">{service.name}</h2>
             <p className="mt-3 text-white/80">{service.description}</p>
@@ -22,7 +22,7 @@ export default function ServicesPage() {
                 <li key={outcome}>• {outcome}</li>
               ))}
             </ul>
-            <Link href={`/services/${service.slug}`} className="mt-5 inline-flex rounded-lg bg-lime-400 px-4 py-2 font-semibold text-black hover:bg-lime-300">
+            <Link href={`/services/${service.slug}`} className="mt-5 inline-flex rounded-lg bg-lime-400 px-4 py-2 font-semibold text-black hover:bg-lime-300 hover:shadow-neon">
               View service page
             </Link>
           </article>

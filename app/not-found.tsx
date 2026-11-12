@@ -9,7 +9,7 @@ export default function NotFound() {
         Use the navigation above to visit the supported services, tools, pricing, contact, and documentation pages.
       </p>
       <div className="mt-8 flex justify-center gap-3">
-        <Link href="/" className="rounded-lg bg-lime-400 px-5 py-3 font-semibold text-black hover:bg-lime-300">
+        <Link href="/" className="rounded-lg bg-lime-400 px-5 py-3 font-semibold text-black hover:bg-lime-300 hover:shadow-neon">
           Go home
         </Link>
         <Link href="/documentation" className="rounded-lg border border-white/15 px-5 py-3 font-semibold text-white hover:border-lime-400 hover:text-lime-300">
