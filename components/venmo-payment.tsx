@@ -17,7 +17,7 @@ export function VenmoPayment({ plan }: { plan: PlanId }) {
       <div className="inline-block rounded-xl bg-white p-3">
         <QRCodeSVG value={url} size={160} />
       </div>
-      <a href={url} target="_blank" rel="noopener noreferrer" className="block rounded-xl bg-lime-400 px-4 py-3 text-center font-semibold text-black hover:bg-lime-300">
+      <a href={url} target="_blank" rel="noopener noreferrer" className="block rounded-xl bg-lime-400 px-4 py-3 text-center font-semibold text-black hover:bg-lime-300 hover:shadow-neon">
         Pay with Venmo
       </a>
     </div>

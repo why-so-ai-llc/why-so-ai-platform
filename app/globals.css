@@ -4,6 +4,15 @@
 
 :root {
   color-scheme: dark;
+  --color-bg: #050505;
+  --color-surface: #0b0d09;
+  --color-text: #f4f6f4;
+  --color-muted: #a5ada1;
+  --color-primary: #a3ff12;
+  --color-glow: #39ff14;
+  --color-border-lime: rgba(163, 255, 18, 0.28);
+  --color-border-neutral: rgba(255, 255, 255, 0.12);
+  --glow-soft: 0 0 24px -6px rgba(57, 255, 20, 0.45);
 }
 
 html {
@@ -14,15 +23,25 @@ body {
   --font-body: var(--font-inter), 'Segoe UI', system-ui, -apple-system, sans-serif;
   --font-display: var(--font-space-grotesk), var(--font-inter), system-ui, sans-serif;
   --font-accent: var(--font-space-grotesk), var(--font-inter), system-ui, sans-serif;
-  background-color: #000;
+  --font-tech: var(--font-orbitron), var(--font-space-grotesk), system-ui, sans-serif;
+  background-color: var(--color-bg);
+  background-image:
+    linear-gradient(rgba(163, 255, 18, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(163, 255, 18, 0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+  color: var(--color-text);
   font-family: var(--font-body);
   font-synthesis: none;
-  @apply text-white antialiased;
+  @apply antialiased;
 }
 
 h1,
 h2,
-h3,
+h3 {
+  font-family: var(--font-tech);
+  letter-spacing: 0.01em;
+}
+
 h4,
 h5,
 h6,
@@ -65,7 +84,110 @@ a {
 }
 
 ::selection {
-  @apply bg-lime-400 text-black;
+  background: var(--color-primary);
+  color: #050505;
+}
+
+/* Visible keyboard focus everywhere */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: 0.25rem;
+}
+
+/* Shared form controls */
+input:not([type='checkbox']):not([type='radio']):not([type='range']),
+select,
+textarea {
+  background-color: var(--color-surface);
+  border-color: var(--color-border-neutral);
+  color: var(--color-text);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-muted);
+  opacity: 0.8;
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  border-color: var(--color-primary);
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+  box-shadow: var(--glow-soft);
+}
+
+/* Shared component styles */
+.btn-primary,
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  transition: box-shadow 150ms ease, background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: #050505;
+}
+
+.btn-primary:hover {
+  background: #c4ff5e;
+  box-shadow: var(--glow-soft);
+}
+
+.btn-secondary {
+  border: 1px solid var(--color-border-lime);
+  color: var(--color-text);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  box-shadow: var(--glow-soft);
+}
+
+.card {
+  border: 1px solid var(--color-border-neutral);
+  border-radius: 1rem;
+  background: var(--color-surface);
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+a.card:hover,
+.card-interactive:hover {
+  border-color: var(--color-primary);
+  box-shadow: var(--glow-soft);
+}
+
+.circuit-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+  opacity: 0.5;
+}
+
+.glow-text {
+  text-shadow: 0 0 18px rgba(57, 255, 20, 0.45);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 @media print {

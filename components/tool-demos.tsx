@@ -29,7 +29,7 @@ const locationOptions = [
 
 function SectionCard({ title, children, description }: { title: string; description?: string; children: React.ReactNode }) {
   return (
-    <section className="rounded-2xl border border-white/15 bg-white/5 p-6 shadow-xl shadow-black/20">
+    <section className="rounded-2xl border border-lime-400/15 bg-brand-surface p-6 shadow-xl shadow-black/20">
       <div className="mb-5">
         <h2 className="text-2xl font-semibold text-white">{title}</h2>
         {description ? <p className="mt-2 text-sm text-white/60">{description}</p> : null}
@@ -86,7 +86,7 @@ export function ContactFormDemo() {
               className="mt-2 w-full rounded-xl border border-white/15 bg-black px-4 py-3 text-white outline-none transition focus:border-lime-400"
             />
           </label>
-          <button type="submit" className="rounded-xl bg-lime-400 px-5 py-3 font-semibold text-black hover:bg-lime-300">
+          <button type="submit" className="rounded-xl bg-lime-400 px-5 py-3 font-semibold text-black hover:bg-lime-300 hover:shadow-neon">
             Prepare request summary
           </button>
         </form>
@@ -138,12 +138,12 @@ export function TodoDemo() {
           placeholder="Add a task"
           className="flex-1 rounded-xl border border-white/15 bg-black px-4 py-3 text-white focus:border-lime-400 focus:outline-none"
         />
-        <button type="submit" className="rounded-xl bg-lime-400 px-4 py-3 font-semibold text-black hover:bg-lime-300">Add</button>
+        <button type="submit" className="rounded-xl bg-lime-400 px-4 py-3 font-semibold text-black hover:bg-lime-300 hover:shadow-neon">Add</button>
       </form>
       <div className="space-y-3">
         {items.length === 0 ? <p className="text-sm text-white/60">No tasks yet.</p> : null}
         {items.map((item) => (
-          <div key={item.id} className="flex items-center justify-between rounded-xl border border-white/15 bg-white/5 px-4 py-3">
+          <div key={item.id} className="flex items-center justify-between rounded-xl border border-lime-400/15 bg-brand-surface px-4 py-3">
             <label className="flex items-center gap-3 text-white">
               <input
                 type="checkbox"
@@ -183,12 +183,12 @@ export function NotesDemo() {
       >
         <input value={title} onChange={(event) => setTitle(event.target.value)} placeholder="Title" className="rounded-xl border border-white/15 bg-black px-4 py-3 text-white focus:border-lime-400 focus:outline-none" />
         <input value={body} onChange={(event) => setBody(event.target.value)} placeholder="Quick note" className="rounded-xl border border-white/15 bg-black px-4 py-3 text-white focus:border-lime-400 focus:outline-none" />
-        <button type="submit" className="rounded-xl bg-lime-400 px-4 py-3 font-semibold text-black hover:bg-lime-300">Save</button>
+        <button type="submit" className="rounded-xl bg-lime-400 px-4 py-3 font-semibold text-black hover:bg-lime-300 hover:shadow-neon">Save</button>
       </form>
       <div className="mt-5 grid gap-3 md:grid-cols-2">
         {notes.length === 0 ? <p className="text-sm text-white/60">No notes stored yet.</p> : null}
         {notes.map((note) => (
-          <article key={note.id} className="rounded-xl border border-white/15 bg-white/5 p-4">
+          <article key={note.id} className="rounded-xl border border-lime-400/15 bg-brand-surface p-4">
             <div className="flex items-start justify-between gap-3">
               <div>
                 <h3 className="font-semibold text-white">{note.title}</h3>
@@ -240,13 +240,13 @@ export function BookmarksDemo() {
       >
         <input value={label} onChange={(event) => setLabel(event.target.value)} placeholder="Label" className="rounded-xl border border-white/15 bg-black px-4 py-3 text-white focus:border-lime-400 focus:outline-none" />
         <input value={url} onChange={(event) => setUrl(event.target.value)} placeholder="example.com" className="rounded-xl border border-white/15 bg-black px-4 py-3 text-white focus:border-lime-400 focus:outline-none" />
-        <button type="submit" className="rounded-xl bg-lime-400 px-4 py-3 font-semibold text-black hover:bg-lime-300">Save</button>
+        <button type="submit" className="rounded-xl bg-lime-400 px-4 py-3 font-semibold text-black hover:bg-lime-300 hover:shadow-neon">Save</button>
       </form>
       {error ? <p className="mt-3 text-sm text-lime-300">{error}</p> : null}
       <div className="mt-5 space-y-3">
         {bookmarks.length === 0 ? <p className="text-sm text-white/60">No bookmarks yet.</p> : null}
         {bookmarks.map((bookmark) => (
-          <div key={bookmark.id} className="flex flex-col gap-3 rounded-xl border border-white/15 bg-white/5 px-4 py-3 md:flex-row md:items-center md:justify-between">
+          <div key={bookmark.id} className="flex flex-col gap-3 rounded-xl border border-lime-400/15 bg-brand-surface px-4 py-3 md:flex-row md:items-center md:justify-between">
             <div>
               <p className="font-semibold text-white">{bookmark.label}</p>
               <a href={bookmark.url} target="_blank" rel="noreferrer" className="text-sm text-lime-300 hover:text-lime-300">{bookmark.url}</a>
@@ -291,7 +291,7 @@ export function PomodoroDemo() {
           <p className="mt-3 text-6xl font-bold text-white">{minutes}:{seconds}</p>
         </div>
         <div className="flex flex-wrap justify-center gap-3">
-          <button type="button" onClick={() => setRunning((current) => !current)} className="rounded-xl bg-lime-400 px-5 py-3 font-semibold text-black hover:bg-lime-300">{running ? 'Pause' : 'Start'}</button>
+          <button type="button" onClick={() => setRunning((current) => !current)} className="rounded-xl bg-lime-400 px-5 py-3 font-semibold text-black hover:bg-lime-300 hover:shadow-neon">{running ? 'Pause' : 'Start'}</button>
           <button type="button" onClick={() => { setRunning(false); setTimerState({ mode: 'Focus', secondsLeft: 25 * 60 }); }} className="rounded-xl border border-white/15 px-5 py-3 font-semibold text-white hover:border-lime-400 hover:text-lime-300">Reset</button>
         </div>
       </div>
@@ -334,13 +334,13 @@ export function ExpenseTrackerDemo() {
           <option>Software</option>
           <option>Travel</option>
         </select>
-        <button type="submit" className="rounded-xl bg-lime-400 px-4 py-3 font-semibold text-black hover:bg-lime-300">Add</button>
+        <button type="submit" className="rounded-xl bg-lime-400 px-4 py-3 font-semibold text-black hover:bg-lime-300 hover:shadow-neon">Add</button>
       </form>
       <div className="mt-6 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
         <div className="space-y-3">
           {expenses.length === 0 ? <p className="text-sm text-white/60">No expenses yet.</p> : null}
           {expenses.map((expense) => (
-            <div key={expense.id} className="flex items-center justify-between rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white">
+            <div key={expense.id} className="flex items-center justify-between rounded-xl border border-lime-400/15 bg-brand-surface px-4 py-3 text-sm text-white">
               <div>
                 <p className="font-semibold text-white">{expense.label}</p>
                 <p className="text-white/60">{expense.category}</p>
@@ -352,7 +352,7 @@ export function ExpenseTrackerDemo() {
             </div>
           ))}
         </div>
-        <div className="rounded-xl border border-white/15 bg-white/5 p-4">
+        <div className="rounded-xl border border-lime-400/15 bg-brand-surface p-4">
           <h3 className="font-semibold text-white">Category totals</h3>
           <div className="mt-4 space-y-2 text-sm text-white/80">
             {Object.entries(totals).length === 0 ? <p className="text-white/60">No totals yet.</p> : null}
@@ -433,22 +433,22 @@ export function WeatherDemo() {
             <option key={option.name}>{option.name}</option>
           ))}
         </select>
-        <button type="button" onClick={() => void loadWeather()} disabled={loading} className="rounded-xl bg-lime-400 px-4 py-3 font-semibold text-black hover:bg-lime-300 disabled:cursor-not-allowed disabled:opacity-60">
+        <button type="button" onClick={() => void loadWeather()} disabled={loading} className="rounded-xl bg-lime-400 px-4 py-3 font-semibold text-black hover:bg-lime-300 hover:shadow-neon disabled:cursor-not-allowed disabled:opacity-60">
           {loading ? 'Loading…' : 'Fetch weather'}
         </button>
       </div>
       {error ? <p className="mt-4 rounded-xl border border-lime-400/30 bg-lime-400/10 p-3 text-sm text-lime-300">{error}</p> : null}
       {weather ? (
         <div className="mt-5 grid gap-4 sm:grid-cols-3">
-          <div className="rounded-xl border border-white/15 bg-white/5 p-4">
+          <div className="rounded-xl border border-lime-400/15 bg-brand-surface p-4">
             <p className="text-sm text-white/60">Temperature</p>
             <p className="mt-2 text-3xl font-semibold text-white">{weather.temperature}°C</p>
           </div>
-          <div className="rounded-xl border border-white/15 bg-white/5 p-4">
+          <div className="rounded-xl border border-lime-400/15 bg-brand-surface p-4">
             <p className="text-sm text-white/60">Wind speed</p>
             <p className="mt-2 text-3xl font-semibold text-white">{weather.windspeed} km/h</p>
           </div>
-          <div className="rounded-xl border border-white/15 bg-white/5 p-4">
+          <div className="rounded-xl border border-lime-400/15 bg-brand-surface p-4">
             <p className="text-sm text-white/60">Observed at</p>
             <p className="mt-2 text-sm font-semibold text-white">{weather.time}</p>
             <p className="mt-2 text-xs text-white/60">Code: {weather.weathercode}</p>
@@ -531,20 +531,20 @@ export function CalculatorDemo() {
 
                   appendToken(token);
                 }}
-                className={token === '=' ? 'rounded-xl bg-lime-400 px-4 py-3 font-semibold text-black hover:bg-lime-300' : 'rounded-xl border border-white/15 px-4 py-3 font-semibold text-white hover:border-lime-400 hover:text-lime-300'}
+                className={token === '=' ? 'rounded-xl bg-lime-400 px-4 py-3 font-semibold text-black hover:bg-lime-300 hover:shadow-neon' : 'rounded-xl border border-white/15 px-4 py-3 font-semibold text-white hover:border-lime-400 hover:text-lime-300'}
               >
                 {token}
               </button>
             ))}
           </div>
           <div className="flex flex-wrap gap-3">
-            <button type="button" onClick={evaluateExpression} className="rounded-xl bg-lime-400 px-4 py-3 font-semibold text-black hover:bg-lime-300">Evaluate</button>
+            <button type="button" onClick={evaluateExpression} className="rounded-xl bg-lime-400 px-4 py-3 font-semibold text-black hover:bg-lime-300 hover:shadow-neon">Evaluate</button>
             <button type="button" onClick={() => { setExpression(''); setResult(''); }} className="rounded-xl border border-white/15 px-4 py-3 font-semibold text-white hover:border-lime-400 hover:text-lime-300">Clear</button>
             <button type="button" onClick={() => setExpression('(12 + 4) / 2')} className="rounded-xl border border-white/15 px-4 py-3 font-semibold text-white hover:border-lime-400 hover:text-lime-300">Try example</button>
           </div>
-          <p className="rounded-xl border border-white/15 bg-white/5 p-4 text-white">{result || 'Result will appear here.'}</p>
+          <p className="rounded-xl border border-lime-400/15 bg-brand-surface p-4 text-white">{result || 'Result will appear here.'}</p>
         </div>
-        <div className="rounded-2xl border border-white/15 bg-white/5 p-5">
+        <div className="rounded-2xl border border-lime-400/15 bg-brand-surface p-5">
           <div className="flex items-center justify-between gap-3">
             <h3 className="font-semibold text-white">Recent calculations</h3>
             <button
@@ -614,12 +614,12 @@ export function JokeDemo() {
 
   return (
     <SectionCard title="Joke generator" description="Public API demo. If the service is unreachable, the page surfaces the network error instead of pretending to succeed.">
-      <button type="button" onClick={() => void fetchJoke()} disabled={loading} className="rounded-xl bg-lime-400 px-4 py-3 font-semibold text-black hover:bg-lime-300 disabled:cursor-not-allowed disabled:opacity-60">
+      <button type="button" onClick={() => void fetchJoke()} disabled={loading} className="rounded-xl bg-lime-400 px-4 py-3 font-semibold text-black hover:bg-lime-300 hover:shadow-neon disabled:cursor-not-allowed disabled:opacity-60">
         {loading ? 'Loading…' : 'Fetch joke'}
       </button>
       {error ? <p className="mt-4 rounded-xl border border-lime-400/30 bg-lime-400/10 p-3 text-sm text-lime-300">{error}</p> : null}
       {joke ? (
-        <div className="mt-5 rounded-xl border border-white/15 bg-white/5 p-5">
+        <div className="mt-5 rounded-xl border border-lime-400/15 bg-brand-surface p-5">
           <p className="text-lg font-semibold text-white">{joke.setup}</p>
           <p className="mt-3 text-white/80">{joke.punchline}</p>
         </div>
@@ -653,7 +653,7 @@ export function PasswordGeneratorDemo() {
       {!hydrated ? <p className="text-sm text-white/60">Loading saved passwords…</p> : null}
       <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
         <div className="space-y-6">
-          <div className="rounded-xl border border-white/15 bg-white/5 p-4">
+          <div className="rounded-xl border border-lime-400/15 bg-brand-surface p-4">
             <p className="break-all font-mono text-lg text-white">{password || 'Generate a password to preview it here.'}</p>
           </div>
           <label className="block text-sm font-medium text-white">
@@ -662,7 +662,7 @@ export function PasswordGeneratorDemo() {
           </label>
           <div className="grid gap-3 sm:grid-cols-2">
             {Object.entries(options).map(([key, value]) => (
-              <label key={key} className="flex items-center gap-3 rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white">
+              <label key={key} className="flex items-center gap-3 rounded-xl border border-lime-400/15 bg-brand-surface px-4 py-3 text-sm text-white">
                 <input type="checkbox" checked={value} onChange={(event) => setOptions((current) => ({ ...current, [key]: event.target.checked }))} className="h-4 w-4 accent-lime-400" />
                 <span className="capitalize">{key}</span>
               </label>
@@ -681,7 +681,7 @@ export function PasswordGeneratorDemo() {
                   setError(creationError instanceof Error ? creationError.message : 'Unable to generate password.');
                 }
               }}
-              className="rounded-xl bg-lime-400 px-5 py-3 font-semibold text-black hover:bg-lime-300"
+              className="rounded-xl bg-lime-400 px-5 py-3 font-semibold text-black hover:bg-lime-300 hover:shadow-neon"
             >
               Generate password
             </button>
@@ -693,7 +693,7 @@ export function PasswordGeneratorDemo() {
         </div>
         <div className="space-y-5">
           {analysis ? (
-            <div className="rounded-2xl border border-white/15 bg-white/5 p-5">
+            <div className="rounded-2xl border border-lime-400/15 bg-brand-surface p-5">
               <div className="flex items-center justify-between gap-4">
                 <h3 className="font-semibold text-white">Strength</h3>
                 <span className={`rounded-full px-3 py-1 text-sm font-semibold text-white ${getStrengthColor(analysis.strength)}`}>{analysis.strength}</span>
@@ -708,7 +708,7 @@ export function PasswordGeneratorDemo() {
               </ul>
             </div>
           ) : null}
-          <div className="rounded-2xl border border-white/15 bg-white/5 p-5">
+          <div className="rounded-2xl border border-lime-400/15 bg-brand-surface p-5">
             <h3 className="font-semibold text-white">Recent passwords</h3>
             <div className="mt-4 space-y-3 text-sm text-white/80">
               {history.length === 0 ? <p className="text-white/60">No locally stored passwords yet.</p> : null}
@@ -728,7 +728,7 @@ export function PasswordGeneratorDemo() {
 
 export function DemoDisclosure() {
   return (
-    <div className="rounded-2xl border border-white/15 bg-white/5 p-5 text-sm text-white/80">
+    <div className="rounded-2xl border border-lime-400/15 bg-brand-surface p-5 text-sm text-white/80">
       <p>
         This repository currently provides a polished frontend demo. Browser-only tools persist locally when noted, but no authentication, payments,
         or backend submission pipeline is configured here.

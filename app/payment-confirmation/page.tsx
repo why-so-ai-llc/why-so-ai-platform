@@ -25,7 +25,7 @@ function Confirmation() {
   }
 
   return (
-    <div className="space-y-6 rounded-2xl border border-white/15 bg-white/5 p-8 text-white">
+    <div className="space-y-6 rounded-2xl border border-lime-400/15 bg-brand-surface p-8 text-white">
       <h2 className="text-2xl font-bold text-white">Payment successful</h2>
       <dl className="grid gap-2 sm:grid-cols-2">
         <dt>Plan</dt><dd className="font-semibold text-white">{plan.name}</dd>

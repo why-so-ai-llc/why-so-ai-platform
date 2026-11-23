@@ -13,7 +13,7 @@ export default function BlogPage() {
       />
       <div className="mx-auto grid max-w-6xl gap-6 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:px-8">
         {blogPosts.map((post) => (
-          <article key={post.slug} className="rounded-2xl border border-white/15 bg-white/5 p-6">
+          <article key={post.slug} className="rounded-2xl border border-lime-400/15 bg-brand-surface p-6">
             <div className="flex items-center justify-between gap-3">
               <p className="text-4xl">{post.icon}</p>
               <span className="rounded-full border border-lime-400/30 bg-lime-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-lime-300">{post.category}</span>

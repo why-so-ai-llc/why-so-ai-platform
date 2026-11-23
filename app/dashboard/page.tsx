@@ -21,7 +21,7 @@ export default function DashboardPage() {
         </div>
         <div className="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {dashboardCards.map((card) => (
-            <div key={card} className="rounded-2xl border border-white/15 bg-white/5 p-6">
+            <div key={card} className="rounded-2xl border border-lime-400/15 bg-brand-surface p-6">
               <h2 className="text-lg font-semibold text-white">{card}</h2>
               <p className="mt-3 text-sm text-white/60">Placeholder content for layout validation and navigation completeness.</p>
             </div>

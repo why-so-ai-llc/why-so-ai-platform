@@ -30,7 +30,7 @@ function CheckoutForm({ plan }: { plan: PlanId }) {
     <form onSubmit={onSubmit} className="space-y-4">
       <PaymentElement />
       {error ? <p role="alert" className="text-sm text-lime-300">{error}</p> : null}
-      <button type="submit" disabled={!stripe || submitting} className="w-full rounded-xl bg-lime-400 px-4 py-3 font-semibold text-black hover:bg-lime-300 disabled:opacity-50">
+      <button type="submit" disabled={!stripe || submitting} className="w-full rounded-xl bg-lime-400 px-4 py-3 font-semibold text-black hover:bg-lime-300 hover:shadow-neon disabled:opacity-50">
         {submitting ? 'Processing…' : `Pay ${formatPrice(selected.amountCents)} / ${selected.interval}`}
       </button>
     </form>

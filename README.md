@@ -21,6 +21,27 @@ npm run build
 npm run start
 ```
 
+## Brand and design system
+
+The site uses the WHYSO AI LLC neon lime-on-black identity. Tokens live in `app/globals.css` (CSS variables) and `tailwind.config.ts` (`brand-*` colors, `font-tech`, `shadow-neon`; the Tailwind `lime` scale is remapped to the brand palette):
+
+| Token | Value |
+| --- | --- |
+| Primary accent | `#A3FF12` |
+| Secondary glow | `#39FF14` |
+| Background | `#050505` |
+| Surface | `#0B0D09` |
+| Text / muted | `#F4F6F4` / `#A5ADA1` |
+
+Shared classes: `.btn-primary`, `.btn-secondary`, `.card`, `.circuit-divider`, `.glow-text`; form controls and `:focus-visible` are styled globally and animations respect `prefers-reduced-motion`. Headings use Orbitron, body text uses Inter.
+
+### Brand assets
+
+Add these files to `public/` (the components fall back to a text wordmark / monogram until they exist):
+
+- `public/brand/whyso-logo.png` — the square WHYSO AI LLC logo (used in the header, homepage, and footer)
+- `public/team/brandon-thompson.jpg` — founder photo for `/team`
+
 ## Current routes
 
 ### Core pages
@@ -38,6 +59,7 @@ npm run start
 - `/dashboard`
 - `/documentation`
 - `/tools`
+- `/team` (Meet the Team: founder photo that opens a résumé dialog)
 
 ### Service detail pages
 

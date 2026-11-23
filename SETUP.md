@@ -37,6 +37,7 @@ npm run build
 - `/case-studies`
 - `/blog`
 - `/tools`
+- `/team`
 - `/contact`
 
 ### Service routes

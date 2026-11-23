@@ -12,7 +12,7 @@ describe('PageHero', () => {
     expect(screen.getByRole('heading', { level: 1, name: 'Title' })).toBeTruthy();
     expect(screen.getByText('Description')).toBeTruthy();
     expect(screen.getByText('Eyebrow').className).toContain('text-lime-400');
-    expect(section?.className).toContain('bg-black');
+    expect(section?.className).toContain('bg-brand-bg');
     expect(section?.className).toContain('overflow-hidden');
     expect(container.querySelector('img')).toBeNull();
   });
